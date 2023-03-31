@@ -1,0 +1,17 @@
+@api = http://localhost:3000/products
+
+
+GET {{api}}
+
+###
+
+POST {{api}}
+
+Content-Type: application/json
+
+{
+        //esto hacerlo en el Postman//
+        "name": "Microphone",
+        "description": "Gaming Microphone"
+       
+}
