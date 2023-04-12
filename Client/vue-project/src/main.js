@@ -1,12 +1,16 @@
 import { createApp } from 'vue'
+import { createPinia } from 'pinia'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+
 import App from './App.vue'
-import router from './router'
-import vuetify from './plugins/vuetify'
-import { loadFonts } from './plugins/webfontloader'
+// import router from './router'
 
-loadFonts()
+import './assets/main.css'
 
-createApp(App)
-  .use(router)
-  .use(vuetify)
-  .mount('#app')
+const app = createApp(App)
+
+app.use(createPinia())
+// app.use(router)
+createApp(App).use(VueAxios, axios).mount('#app')
+// app.mount('#app')
