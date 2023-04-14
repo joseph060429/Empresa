@@ -4,10 +4,12 @@ const bodyParser = require("body-parser");
 const verificarToken = require("./middleware/validate-token");
 const routesProtegidas = require("./routes/routes");
 const routesNoProtegidas = require("./routes/routes.no.protegidas")
+const cors = require("cors")
 
 require("dotenv").config();
 
 const app = express();
+app.use(cors())
 
 //Capturar body
 app.use(bodyParser.urlencoded({ extended: false }));

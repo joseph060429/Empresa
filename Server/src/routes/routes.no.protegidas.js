@@ -9,6 +9,6 @@ const router = require("express").Router();
 router.post("/registro", createNewUser);
 
 // Login Usuario
-router.get("/login", loginUsuario);
+router.post("/login", loginUsuario);
 
 module.exports = router;
