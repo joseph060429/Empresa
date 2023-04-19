@@ -1,11 +1,13 @@
 <template>
-  <v-form @submit.prevent="registroApi">
+  <h1> Hola </h1>
+  <!-- <v-form @submit.prevent="registroApi">
     <v-text-field v-model="data.correo" label="Correo"> </v-text-field>
     <v-text-field v-model="data.clave" label="Contraseña"></v-text-field>
     <v-tex-fielda v-model="data.apellido" label="Apellido"></v-tex-fielda>
     <v-tex-fielda v-model="data.nombre" label="Nombre"></v-tex-fielda>
     <v-btn type="submit">Regístrate</v-btn>
-  </v-form>
+  </v-form> -->
+ 
 </template>
 
 <script setup>

@@ -77,7 +77,7 @@ const createNewUser = async (req, res) => {
          return res.status(200).json(user);
         //  console.log(user);
       }
-       res.status(400).send("Credenciales invalidas")
+       res.status(400).send("Usuario o contraseña inválidas")
     } catch (error) {
       console.log(error);
     }
