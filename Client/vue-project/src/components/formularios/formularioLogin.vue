@@ -1,5 +1,5 @@
 <template>
-   <div>
+  <div>
     <v-toolbar
       dark
       prominent
@@ -17,18 +17,17 @@
     </v-toolbar>
   </div>
 
-  <v-form @submit.prevent="loginApi">
+  <v-form @submit.prevent="IniciarSesion">
     <v-text-field v-model="data.correo" label="Correo"> </v-text-field>
     <v-text-field v-model="data.clave" label="Contraseña"></v-text-field>
-    <v-btn type="submit">Loguear</v-btn>
-    <v-btn type="submit" post="./formularioRegistro.vue">Registrarse</v-btn>
+    <v-btn type="submit" > Iniciar Sesión <v-icon icon="mdi-vuetify"> </v-icon
+    ></v-btn>
   </v-form>
-
-  
 </template>
 
 <script setup>
 import { ref } from "vue";
+import { router } from "@/router";
 import apiClient from "../../middlewares/axios";
 
 const data = ref({
@@ -36,18 +35,30 @@ const data = ref({
   clave: "",
 });
 
-function loginApi() {
-  
+function IniciarSesion() {
+
   apiClient
     .post("login", {
       email: data.value.correo,
       password: data.value.clave,
+      // loading: true,
+      
     })
     .then((res) => {
-      console.log(res);
+      if (res.status === 200) {
+        if (res.data.token) {
+          localStorage.setItem("token", res.data.token);
+        }
+        router.push({name: '', id: '2', pokemon: "bulbasur", bloqueado: true})
+        console.log(res);
+      } else {
+        
+      }
+      
     })
     .catch((err) => {
       console.log("Error ", err);
     });
+
 }
 </script>

@@ -1,24 +1,20 @@
 <template>
   <div>
-    <!-- <Counter> </Counter> -->
-    <FormularioLogin>  </FormularioLogin>
-    <!-- <li><router-link :to="{ name: 'Login' }"> Login </router-link></li> -->
+    <FormularioLogin> </FormularioLogin>
   </div>
   <div>
- 
-    <FormularioRegistro>  </FormularioRegistro>
-   
+    <!-- <FormularioRegistro> </FormularioRegistro> -->
   </div>
+  <div>
+    <!-- <Logueado></Logueado> -->
 
-
-
-  <!-- <router-view></router-view> -->
+  </div>
 </template>
 
 <script setup>
 // import formulario from './components/formularios'
-import FormularioLogin from './components/formularios/formularioLogin.vue';
-import FormularioRegistro from './components/formularios/formularioRegistro.vue'
-// import Counter from './components/counter.vue'
+import FormularioLogin from "./components/formularios/formularioLogin.vue";
+import FormularioRegistro from "./components/formularios/formularioRegistro.vue";
+import VistaLogueado from "./views/vistalogueado.vue"
 
 </script>
