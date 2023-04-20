@@ -2,7 +2,7 @@
 import { createWebHistory, createRouter } from "vue-router";
 import Registro from "../views/registro.vue";
 import Login from "../views/loging.vue";
-import vistalogueado from "../views/vistalogueado.vue"
+import vistaLogueado from "../views/vistalogueado.vue"
 
 // import App from "../App.vue"
 
@@ -11,7 +11,7 @@ const routes = [
   {
     path: "/",
     name: "Main",
-    component: Login,
+    
   },
   {
     path: "/login",
@@ -26,7 +26,7 @@ const routes = [
   {
     path: "/logueado",
     name: "Logueado",
-    component: vistalogueado,
+    component: vistaLogueado,
   },
  
 ];
