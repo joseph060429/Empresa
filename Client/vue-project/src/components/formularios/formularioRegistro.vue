@@ -1,40 +1,55 @@
 <template>
-  <h1> Hola </h1>
-  <!-- <v-form @submit.prevent="registroApi">
-    <v-text-field v-model="data.correo" label="Correo"> </v-text-field>
-    <v-text-field v-model="data.clave" label="Contraseña"></v-text-field>
-    <v-tex-fielda v-model="data.apellido" label="Apellido"></v-tex-fielda>
-    <v-tex-fielda v-model="data.nombre" label="Nombre"></v-tex-fielda>
-    <v-btn type="submit">Regístrate</v-btn>
-  </v-form> -->
- 
+  <v-form @submit.prevent="registrarse">
+    <v-text-field v-model="data.nombre" label="Nombre" type="text">
+    </v-text-field>
+    <v-text-field v-model="data.apellidos" label="Apellidos" type="text">
+    </v-text-field>
+    <v-text-field v-model="data.correo" label="Correo" type="e-mail">
+    </v-text-field>
+    <v-text-field
+      v-model="data.clave"
+      label="Contraseña"
+      type="password"
+    ></v-text-field>
+    <v-btn type="submit">
+      Registrarse <v-icon icon="mdi-vuetify"> </v-icon
+    ></v-btn>
+  </v-form>
 </template>
 
 <script setup>
 import { ref } from "vue";
+import { router } from "@/router";
 import apiClient from "../../middlewares/axios";
-
 const data = ref({
+  nombre: "",
+  apellidos: "",
   correo: "",
   clave: "",
-  apellido: "",
-  nombre: "",
 });
 
-function registroApi() {
-  //   console.log(data.value.correo, data.value.clave);
+function registrarse() {
   apiClient
-    .post("login", {
+    .post("registro", {
+      name: data.value.nombre,
+      surnames: data.value.apellidos,
       email: data.value.correo,
       password: data.value.clave,
-      surnames: data.value.apellido,
-      name: data.value.nombre,
     })
     .then((res) => {
-      console.log(res);
+      if (res.status === 201) {
+        console.log("Usuario reigstrado correctamente");
+        router.push("/registrado");
+      }
     })
     .catch((err) => {
-      console.log("Error ", err);
+      console.log(err);
+      if (err.response.status === 400) {
+        alert("Usuario ya registrado.");
+      } else {
+        console.log(err);
+      }
     });
+
 }
 </script>

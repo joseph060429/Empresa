@@ -1,7 +1,7 @@
 <template>
-    <h1>Usuario Logueado</h1>
-  </template>
-  
-  <script setup>
+  <logueado></logueado>
+</template>
 
+<script setup>
+import { logueado } from "@/components";
 </script>

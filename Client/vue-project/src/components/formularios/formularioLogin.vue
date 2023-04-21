@@ -1,9 +1,8 @@
 <template>
-  <v-form @submit.prevent="IniciarSesion">
-    <v-text-field v-model="data.correo" label="Correo"> </v-text-field>
-    <v-text-field v-model="data.clave" label="Contraseña"></v-text-field>
-    <v-btn type="submit"> Iniciar Sesión <v-icon icon="mdi-vuetify"> </v-icon
-    ></v-btn>
+  <v-form @submit.prevent="iniciarSesion">
+    <v-text-field v-model="data.correo" label="Correo" type="e-mail"> </v-text-field>
+    <v-text-field v-model="data.clave" label="Contraseña" type="password"></v-text-field>
+    <v-btn type="submit"> Iniciar Sesión <v-icon icon="mdi-vuetify"> </v-icon></v-btn>
   </v-form>
 </template>
 
@@ -11,13 +10,13 @@
 import { ref } from "vue";
 import { router } from "@/router";
 import apiClient from "../../middlewares/axios";
-
+// import toast from 'vue3-toastify'
 const data = ref({
   correo: "",
   clave: "",
 });
 
-function IniciarSesion() {
+function iniciarSesion() {
 
   apiClient
     .post("login", {
