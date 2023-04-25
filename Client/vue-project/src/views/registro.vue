@@ -16,4 +16,4 @@ import {formularioRegistro} from '@/components'
 //     apellido: "baron",
 //     email: "poke@gmail.com"
 //  })
-</script>
+</script> 

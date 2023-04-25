@@ -6,14 +6,9 @@
     </v-text-field>
     <v-text-field v-model="data.correo" label="Correo" type="e-mail">
     </v-text-field>
-    <v-text-field
-      v-model="data.clave"
-      label="Contraseña"
-      type="password"
-    ></v-text-field>
+    <v-text-field v-model="data.clave" label="Contraseña" type="password"></v-text-field>
     <v-btn type="submit">
-      Registrarse <v-icon icon="mdi-vuetify"> </v-icon
-    ></v-btn>
+      Registrarse <v-icon icon="mdi-vuetify"> </v-icon></v-btn>
   </v-form>
 </template>
 
@@ -38,17 +33,18 @@ function registrarse() {
     })
     .then((res) => {
       if (res.status === 201) {
-        console.log("Usuario reigstrado correctamente");
-        router.push("/registrado");
+        if (res.data.token) {
+          localStorage.setItem("token", res.data.token);
+        }
+        console.log(res);
+        router.push("/logueado")
+      } else {
+        console.log(Error);
       }
+
     })
     .catch((err) => {
-      console.log(err);
-      if (err.response.status === 400) {
-        alert("Usuario ya registrado.");
-      } else {
-        console.log(err);
-      }
+      console.log("Error ", err);
     });
 
 }

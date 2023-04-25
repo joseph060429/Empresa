@@ -12,7 +12,8 @@
         <v-btn to="/" color="white">Inicio</v-btn>
         <v-btn to="/registro" color="white" class="ma-2">Registro</v-btn>
 
-        <v-btn to="/login" color="white">Login</v-btn>
+        <v-btn to="/login" color="white"
+        >Login</v-btn>
       </v-toolbar>
     </div>
 
@@ -28,4 +29,5 @@
 // import FormularioLogin from "./components/formularios/formularioLogin.vue";
 // import FormularioRegistro from "./components/formularios/formularioRegistro.vue";
 // import Logueado from "./views/vistalogueado.vue";
+
 </script>

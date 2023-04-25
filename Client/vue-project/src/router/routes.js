@@ -2,9 +2,11 @@
 import { createWebHistory, createRouter } from "vue-router";
 import Registro from "../views/registro.vue";
 import Login from "../views/loging.vue";
-import vistaLogueado from "../views/vistalogueado.vue"
+import vistaLogueadoRegistrado from "../views/vistalogueado.vue"
 import vistaInicio from "../views/vistaInicio.vue"
-import vistaRegistrado from "../views/vistaRegistrado.vue"
+
+
+// import registrado from "../components/registrado.vue"
 
 
 // import App from "../App.vue"
@@ -30,12 +32,7 @@ const routes = [
   {
     path: "/logueado",
     name: "Logueado",
-    component: vistaLogueado,
-  },
-  {
-    path: "/registrado",
-    name: "Registrado",
-    component: vistaRegistrado,
+    component: vistaLogueadoRegistrado,
   },
 
  

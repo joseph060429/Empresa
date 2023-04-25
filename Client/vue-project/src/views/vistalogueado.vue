@@ -1,7 +1,10 @@
 <template>
-  <logueado></logueado>
+  <logueadoRegistrado></logueadoRegistrado>
+  <!-- <registrado></registrado> -->
 </template>
 
 <script setup>
-import { logueado } from "@/components";
+import { logueadoRegistrado } from "@/components";
+// import { registrado } from "@/components";
+
 </script>
