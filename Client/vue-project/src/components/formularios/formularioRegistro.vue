@@ -1,4 +1,5 @@
 <template>
+  <v-alert v-model="data.showAlert" type="error" class="mb-3" closable>{{ data.errorText }} </v-alert>
   <v-form @submit.prevent="registrarse">
     <v-text-field v-model="data.nombre" label="Nombre" type="text">
     </v-text-field>
@@ -21,15 +22,24 @@ const data = ref({
   apellidos: "",
   correo: "",
   clave: "",
+  showAlert: false,
+  errorText: "",
 });
 
 function registrarse() {
+  if (!data.value.correo || !data.value.clave || !data.value.nombre || !data.value.apellidos) {
+    data.value.showAlert = true;
+    data.value.errorText = 'Todos los campos son obligatorios'
+    return;
+  }
   apiClient
     .post("registro", {
       name: data.value.nombre,
       surnames: data.value.apellidos,
       email: data.value.correo,
       password: data.value.clave,
+      showAlert: false,
+      errorText: "",
     })
     .then((res) => {
       if (res.status === 201) {
@@ -37,7 +47,7 @@ function registrarse() {
           localStorage.setItem("token", res.data.token);
         }
         console.log(res);
-        router.push("/logueado")
+        router.push("/logueadoRegistrado")
       } else {
         console.log(Error);
       }

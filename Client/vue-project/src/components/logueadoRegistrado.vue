@@ -10,6 +10,6 @@ import {router} from "@/router"
 
 function desloguear() {
   localStorage.removeItem("token");
-  router.push("/login");
+  router.push("/");
 }
 </script>

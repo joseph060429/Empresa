@@ -30,7 +30,7 @@ const routes = [
     component: Registro,
   },
   {
-    path: "/logueado",
+    path: "/logueadoRegistrado",
     name: "Logueado",
     component: vistaLogueadoRegistrado,
   },
