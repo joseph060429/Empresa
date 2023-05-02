@@ -24,10 +24,10 @@
 </template>
 
 <script setup>
-// import {formularioRegistro} from "./components/formularios/index"
+//Me da error
+// import {useAuthStore} from '@/stores'
 
-// const data = ref({
-//   formularioRegistro: true
-// });
+
+
 
 </script>
