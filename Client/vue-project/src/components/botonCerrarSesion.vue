@@ -1,6 +1,6 @@
-<!-- <template>
-    <v-btn @click="desloguear">
-      Cerrar Sesión <v-icon icon="mdi-vuetify"> </v-icon
+<template>
+    <v-btn @click="desloguear"><h4>
+      Cerrar Sesión </h4><v-icon icon="mdi-vuetify"> </v-icon
     ></v-btn>
   </template>
   
@@ -9,6 +9,6 @@
   
   function desloguear() {
     localStorage.removeItem("token");
-    router.push("/inicio");
+    router.push("/");
   }
-  </script> -->
+  </script>

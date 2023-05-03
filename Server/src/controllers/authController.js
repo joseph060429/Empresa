@@ -74,7 +74,7 @@ const createNewUser = async (req, res) => {
         user.token = token;
   
         //Devuelvo al usuario
-         return res.status(200).json(user);
+         return res.status(200).json({token: token});
         //  console.log(user);
       }
        res.status(400).send("Usuario o contraseña inválidas")

@@ -41,7 +41,7 @@ import { router } from "../router";
 
 // export default userStore;
 
-export const useAuthStore = defineStore({
+ const useAuthStore = defineStore({
   id: 'auth',
   state: () => ({
     //inicializar el estado desde el almacenamiento local para permitir que el usuario permanezca conectado
@@ -49,9 +49,11 @@ export const useAuthStore = defineStore({
       returnUrl: null,
       email: null,
       username: null,
-      id: null,
-      estaLogueado: false,
+      // id: null,
+      isLogged: false,
   }),
+
+
     getters: {
     getUsername(state) {
       return state.username
@@ -62,6 +64,7 @@ export const useAuthStore = defineStore({
   },
   actions: {
       async login(email, password) {
+          // const user = await fetchWrapper.post(`${baseUrl}/login`, { email, password });
           const user = await fetchWrapper.post(`${baseUrl}/login`, { email, password });
 
           // actualizar el estado de pinia
@@ -82,7 +85,7 @@ export const useAuthStore = defineStore({
   }
 });
 
-export default useAuthStore;
+ export default useAuthStore;
 
 
 

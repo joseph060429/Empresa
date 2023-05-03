@@ -4,6 +4,7 @@ import Registro from "../views/registro.vue";
 import Login from "../views/loging.vue";
 import vistaLogueadoRegistrado from "../views/vistalogueado.vue"
 import vistaInicio from "../views/vistaInicio.vue"
+import {authStores} from '@/stores'
 
 
 // import registrado from "../components/registrado.vue"
@@ -42,5 +43,14 @@ const router = createRouter({
   history: createWebHistory(),
   routes
 });
+
+router.beforeEach((to, from) => {
+  const authStore = authStores()
+  if(localStorage.getItem('token')){
+    authStore.isLogged = true
+  } else {
+    authStore.isLogged = false
+  }
+})
 
 export default router;

@@ -12,12 +12,15 @@ import { ref } from "vue";
 import { router } from "@/router";
 import apiClient from "../../middlewares/axios";
 import { toast } from 'vue3-toastify'
+import {authStores} from '@/stores'
+
 
 const data = ref({
   correo: "",
   clave: "",
   showAlert: false,
   errorText: "",
+  loading: false
 });
 
 function iniciarSesion() {
@@ -32,7 +35,7 @@ function iniciarSesion() {
     .post("login", {
       email: data.value.correo,
       password: data.value.clave,
-      // loading: true,
+     loading: true,
 
     })
     .then((res) => {
@@ -43,9 +46,8 @@ function iniciarSesion() {
         }
 
         console.log(res);
+        // authStores.estaLogueado = true
         router.push("/logueadoRegistrado")
-      } else {
-        console.log(Error);
 
       }
 
