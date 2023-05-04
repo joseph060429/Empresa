@@ -2,13 +2,11 @@
 import { createWebHistory, createRouter } from "vue-router";
 import Registro from "../views/registro.vue";
 import Login from "../views/loging.vue";
-import vistaLogueadoRegistrado from "../views/vistalogueado.vue"
-import vistaInicio from "../views/vistaInicio.vue"
+import vistaLogueadoRegistrado from "../views/vistalogueado.vue";
+import vistaInicio from "../views/vistaInicio.vue";
 import {authStores} from '@/stores'
 
-
 // import registrado from "../components/registrado.vue"
-
 
 // import App from "../App.vue"
 
@@ -17,8 +15,7 @@ const routes = [
   {
     path: "/",
     name: "Inicio",
-   component: vistaInicio
-    
+    component: vistaInicio,
   },
   {
     path: "/login",
@@ -35,22 +32,19 @@ const routes = [
     name: "Logueado",
     component: vistaLogueadoRegistrado,
   },
-
- 
 ];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
 });
 
 router.beforeEach((to, from) => {
-  const authStore = authStores()
-  if(localStorage.getItem('token')){
-    authStore.isLogged = true
-  } else {
-    authStore.isLogged = false
+  const test = authStores();
+
+  if (to.name === "Logueado" && test.getIsAuthenticated) {
+    return{ name: "Inicio" };
   }
-})
+});
 
 export default router;

@@ -1,38 +1,26 @@
 <template>
-  <nav>
+  <v-app>
     <div>
-      <v-toolbar
-        color="primary"
-        dark
-        prominent
-        image="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg">
-        <v-toolbar-title> <h2>Mi Página Web</h2></v-toolbar-title>
-
-        <v-spacer></v-spacer>
-
-        <v-btn to="/" color="white" v-if="!authStore.isLogged"> <h4>Inicio</h4></v-btn>
-        <v-btn to="/registro" color="white" class="ma-2" v-if="!authStore.isLogged"><h4>Registro</h4></v-btn>
-        <!-- <v-btn to="/login" color="white" v-if="!authStores.estaLogueado"><h4> Login </h4></v-btn> -->
-        <v-btn to="/login" color="white" v-if="!authStore.isLogged"><h4>Login</h4></v-btn>
-        <botonCerrarSesion v-if="authStore.isLogged"></botonCerrarSesion>
-      </v-toolbar>
+      <cabecera></cabecera>
     </div>
-  </nav>
+    <div>
+      <inicio></inicio>
 
-  <div class="container">
-    <router-view></router-view>
-  </div>
 
+    </div>
+
+
+    <div class="container">
+      <router-view></router-view>
+    </div>
+
+    <footerComponent></footerComponent>
+  </v-app>
 </template>
 
 <script setup>
-import { authStores } from "@/stores";
-import {botonCerrarSesion} from "@/components";
+import { footerComponent } from "@/components";
+import { cabecera } from "@/components";
+// import { inicio } from "./views"
 
-const authStore = authStores()
-
-
-// import {useAuthStore} from "@/stores"
-
-// import { logueadoRegistrado } from "./components";
 </script>

@@ -1,47 +1,61 @@
 import { defineStore } from "pinia";
 import { router } from "../router";
+// import apiClient from "../middlewares/axios";
 
-// const userStore = defineStore("user", {
-//   state: () => {
-//     return {
-//       username: null,
+//   const useAuthStore = defineStore({
+//   id: 'auth',
+//   state: () => ({
+//     //inicializar el estado desde el almacenamiento local para permitir que el usuario permanezca conectado
+//       user: JSON.parse(localStorage.getItem('user')),
+//       returnUrl: null,
 //       email: null,
-//       id: null,
-//       estaLogueado: false,
-//     };
-//   },
-//   getters: {
+//       username: null,
+//       // id: null,
+//       isLogged: false,
+//   }),
+
+
+//     getters: {
 //     getUsername(state) {
-//       return state.username;
+//       return state.username
 //     },
 //     getEmail(state) {
 //       return state.email;
 //     },
+//     getIsAuthenticated(){
+//       console.log('Valor de variable: '+ this.isLogged);
+//       return this.isLogged;
+//     }
 //   },
 //   actions: {
-//     setUsername(username) {
-//       this.username = username;
-//     },
-//     setEmail(email) {
-//       if (email === null) {
-//         this.email = "None";
+//       async login(email, password) {
+//           try {
+//             // const user = await fetchWrapper.post(`${baseUrl}/login`, { email, password });
+//           const user = await apiClient.post('https://localhost:4000/login', { email, password });
+
+//           // actualizar el estado de pinia
+//           this.user = user;
+//           //almacenar los detalles del usuario y jwt en el almacenamiento local para mantener al usuario conectado entre actualizaciones
+//           //de página
+//           localStorage.setItem('user', JSON.stringify(user.data.token));
+//             this.isLogged = true;
+//             router.push('/logueadoRegistrado');
+//           //redirigir a la URL anterior o por defecto a la página de inicio
+//           // router.push(this.returnUrl || '/');
+//           } catch (error) {
+//             this.isLogged = false;
+//             console.log(error);
+//           }
+//       },
+//       logout() {
+//           this.user = null;
+//           localStorage.removeItem('user');
+//           router.push('/login');
+//           this.isLogged = false;
 //       }
-//       this.email = email;
-//     },
-//     login() {
-//       this.estaLogueado = true;
-//     },
-//     cerrarSesion() {
-//       this.estaLogueado = false;
-//       localStorage.removeItem("token");
-//       router.push("inicio");
-//     },
-//   },
-// })
-
-// export default userStore;
-
- const useAuthStore = defineStore({
+//   }
+// });
+const useAuthStore = defineStore({
   id: 'auth',
   state: () => ({
     //inicializar el estado desde el almacenamiento local para permitir que el usuario permanezca conectado
@@ -79,11 +93,16 @@ import { router } from "../router";
       },
       logout() {
           this.user = null;
-          localStorage.removeItem('user');
-          router.push('/login');
+          this.isLogged = false;
+          localStorage.removeItem('token');
+          router.push('/');
       }
   }
 });
+
+
+
+
 
  export default useAuthStore;
 

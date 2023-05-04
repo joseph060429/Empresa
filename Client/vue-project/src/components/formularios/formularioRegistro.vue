@@ -9,7 +9,7 @@
     </v-text-field>
     <v-text-field v-model="data.clave" label="Contraseña" type="password"></v-text-field>
     <v-btn type="submit">
-      Registrarse <v-icon icon="mdi-vuetify"> </v-icon></v-btn>
+      Registrarse <v-icon icon="mdi mdi-account-plus"/></v-btn>
   </v-form>
 </template>
 
@@ -55,6 +55,12 @@ function registrarse() {
     })
     .catch((err) => {
       console.log("Error ", err);
+      const res = err.response
+      if(res.data.errorCode === 400)
+      console.log();
+      data.value.showAlert = true;
+      data.value.errorText = "El usuario ya existe, por favor logueate";
+      router.push('registro')
     });
 
 }

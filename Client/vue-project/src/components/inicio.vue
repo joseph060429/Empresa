@@ -1,9 +1,18 @@
 <template>
-    <h1>Pagina inicio</h1>
-    
- 
- 
+  <h1>Inicio</h1>
 
-  </template>
+
   
-  <script setup></script>
+
+   
+  
+</template>
+
+<script setup>
+
+
+
+
+
+
+</script>
