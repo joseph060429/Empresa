@@ -1,5 +1,5 @@
 <template>
-  <h1> Puedes acceder </h1>
+  <h1> Bienvenido aquí podrás disfrutar de todo</h1>
 
   <div>
     
