@@ -144,3 +144,7 @@ const formulario = reactive({
   console.log("Muestrame x", x);
  })
 </script>
+
+
+<!-- ref = data.value.+nombre -->
+<!-- reactive = data.+nombre -->

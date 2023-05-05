@@ -5,6 +5,7 @@ import Login from "../views/loging.vue";
 import vistaLogueadoRegistrado from "../views/vistalogueado.vue";
 import vistaInicio from "../views/vistaInicio.vue";
 import {authStores} from '@/stores'
+import { toast } from "vue3-toastify";
 
 // import registrado from "../components/registrado.vue"
 
@@ -31,6 +32,9 @@ const routes = [
     path: "/logueadoRegistrado",
     name: "Logueado",
     component: vistaLogueadoRegistrado,
+    meta:{
+      requiresAuth: true
+    }
   },
 ];
 
@@ -39,11 +43,24 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach((to, from) => {
+router.beforeEach((to, from, next) => {
   const test = authStores();
 
-  if (to.name === "Logueado" && test.getIsAuthenticated) {
-    return{ name: "Inicio" };
+
+  const token = localStorage.getItem('token')
+  if(to.meta.requiresAuth){
+      if(token){
+          next();
+      }else{
+          toast('logueate primero', {type: 'error'})
+          next('login')
+      }
+  }else{
+    next()
+  }
+
+  if (to.name === "Logueado" && test.isLogged) {
+    next('/')
   }
 });
 

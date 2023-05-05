@@ -1,11 +1,11 @@
-import api from './axios'
+import {apiClient} from '@/middlewares'
 
 async function verificarToken(token) {
-    if (token === null) {
+    if (!token) {
         return false;
     }
 
-    api.post('auth', null, {
+    apiClient.post('auth', null, {
         headers: {
             Authorization: 'Bearer ' + token
         }
@@ -14,25 +14,4 @@ async function verificarToken(token) {
 
 }
 
-function checkToken() {
-    if(localStorage.getItem('token')){
-        return true;
-    } else{
-        return false;
-    }
-
-}
-
-function routerMiddleware(to, from, next){
-    const token = localStorage.getItem('token')
-    if(to.meta.requiresAuth){
-        if(token){
-            next();
-        }else{
-            next('login')
-        }
-    }
-
-}
-
-export default { checkToken, verificarToken, routerMiddleware }
+export default verificarToken 

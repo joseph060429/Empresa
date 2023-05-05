@@ -4,7 +4,7 @@
       <cabecera></cabecera>
     </div>
     <div>
-      <inicio></inicio>
+      <!-- <inicio></inicio> -->
 
 
     </div>
@@ -21,6 +21,6 @@
 <script setup>
 import { footerComponent } from "@/components";
 import { cabecera } from "@/components";
-// import { inicio } from "./views"
+// import { inicio } from "@/components"
 
 </script>

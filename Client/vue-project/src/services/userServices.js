@@ -1,5 +1,5 @@
 import { storeToRefs } from "pinia";
-import { useLoginStore } from "../stores/loginStores";
+import { useServices } from "../stores/loginStores";
 
 export const useLogin = () => {
   const store = useLoginStores();
@@ -17,6 +17,7 @@ export const useLogin = () => {
   const borrarUsuario = async (data) => {
     return await store.delete(data).then(result => {
         return result;
+        
 
     })
 
@@ -27,12 +28,24 @@ export const useLogin = () => {
     })
 
   };
-  const obtenerTodosUsuario = async (todosUsuarios) => {
+  const obtenerTodosUsuario = async () => {
     return await store.getAll(todosUsuarios).then(result => {
         return result;
     })
+  
+};
 
-  }
+const loginUsuario = async (data) => {
+  return await store.login(data).then(result => {
+      return result;
+  })
+};
+
+const registrarUsuario = async (data) => {
+  return await store.login(data).then(result => {
+      return result;
+  })
+};
 
 
   return {
@@ -40,7 +53,9 @@ export const useLogin = () => {
         actualizaUsuario,
         borrarUsuario,
         obtenerUsuario,
-        obtenerTodosUsuario
+        obtenerTodosUsuario,
+        loginUsuario,
+        registrarUsuario
     }
 };
 

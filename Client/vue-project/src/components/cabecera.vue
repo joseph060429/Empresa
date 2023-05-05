@@ -7,7 +7,7 @@
         prominent
         image="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
       >
-        <v-toolbar-title> <h2>Puerto Supe</h2></v-toolbar-title>
+        <v-toolbar-title class="font-weight-black"> <h2>Puerto Supe</h2></v-toolbar-title>
 
         <v-spacer></v-spacer>
 
@@ -21,7 +21,7 @@
           class="ma-2"
           v-if="!authStore.isLogged"
         >
-          <v-icon icon="mmdi mdi-account" />
+          <v-icon icon="mmdi mdi-account"/>
           <h4>Registro</h4></v-btn
         >
         <v-btn to="/login" color="white" v-if="!authStore.isLogged">
@@ -36,8 +36,8 @@
 <script setup>
 import { authStores } from "@/stores";
 import { botonCerrarSesion } from "@/components";
-import SvgIcon from "@jamescoyle/vue-icon";
-import { mdiAccount } from "@mdi/js";
+// import SvgIcon from "@jamescoyle/vue-icon";
+// import { mdiAccount } from "@mdi/js";
 const authStore = authStores();
 
 // import { onMounted } from "vue";
@@ -56,3 +56,4 @@ const authStore = authStores();
 // const isLogged = storeToRefs(authStore)
 // const token = localStorage.getItem('token')
 </script>
+

@@ -12,10 +12,11 @@ const pinia = createPinia()
 loadFonts()
 
 createApp(App)
+.use(pinia)
   .use(router)
   .use(vuetify)
   .use(VueAxios,axios)
-  .use(pinia)
+  
   .mount('#app')
 
 
