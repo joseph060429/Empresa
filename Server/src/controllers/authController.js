@@ -10,7 +10,7 @@ const createNewUser = async (req, res) => {
   
       //Validar la entrada al usuario
       if (!(email && password && name && surnames)) {
-        res.status(400).json({ msg: "Todos los campos son requeridos" });
+        res.status(400).send("Todos los campos son requeridos");
       }
   
       //Ver si el usuario ya existe en la base de datos
@@ -19,9 +19,8 @@ const createNewUser = async (req, res) => {
       const usuarioExiste = await Users.findOne({ where: { email: email } });
   
       if (usuarioExiste) {
-        return res
-          .status(400)
-          .json({ msg: "El usuario ya existe, por favor logueate" });
+        res.status(400).send("El usuario ya existe por favor logueate")
+
       }
   
       //Encriptar la contraseña
@@ -53,7 +52,6 @@ const createNewUser = async (req, res) => {
   //LOGIN//
   const loginUsuario = async (req, res) => {
     try {
-      // console.log('reqqweewqqqqq',req.body);
       const { email, password } = req.body;
   
       //Validar todos los campos

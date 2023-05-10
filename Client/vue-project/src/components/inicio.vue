@@ -1,33 +1,28 @@
 <template>
-  <div class="d-flex justify-center">
-     <v-card width="1000px">
-        <v-card-title class="text-h6 text-md-h5 text-lg-h4">Text</v-card-title>
-          <v-card-text>
-            Body text
-          </v-card-text>
-    </v-card>
-  </div>
-
-
-
-
-
-  
-
-  
-
-
-  
-
+  <div class="container">
+    <h1 id="title">Acerca de nosotros</h1>
    
-  
+    <p id="p">
+      El Distrito de Supe Puerto es un distrito del Perú, ubicado en la
+      Provincia de Barranca, en el Departamento de Lima.
+    </p>
+  </div>
 </template>
 
-<script setup>
+<script setup></script>
 
+<style>
+#title {
+  color: red;
+  margin-inline: 2%;
+  margin-block-end: auto;
+  font-family: "Times New Roman";
+}
+#p {
+  color: aqua;
+  font-family: "Times New Roman";
+  margin-left: 2%;
 
-
-
-
-
-</script>
+  margin-right: 2%;
+}
+</style>
