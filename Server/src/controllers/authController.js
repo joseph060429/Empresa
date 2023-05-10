@@ -44,7 +44,7 @@ const createNewUser = async (req, res) => {
       //Guardar token
       // user.token = token;
       //Devolver un nuevo usuario
-      console.log('reqqqqqq',req.body);
+      // console.log('reqqqqqq',req.body);
       loginUsuario(req,res)
     } catch (error) {
       console.log(error);
@@ -53,7 +53,7 @@ const createNewUser = async (req, res) => {
   //LOGIN//
   const loginUsuario = async (req, res) => {
     try {
-      console.log('reqqweewqqqqq',req.body);
+      // console.log('reqqweewqqqqq',req.body);
       const { email, password } = req.body;
   
       //Validar todos los campos
@@ -68,18 +68,19 @@ const createNewUser = async (req, res) => {
         user &&(await bcrypt.compare(password, user.password))
       ) {
         //Creo un token
-        const token = jwt.sign((await Users.findOne({ where: { email: email } }).dataValues) , process.env.SECRET, {
+        delete user.dataValues.password
+        const token = jwt.sign(user.dataValues , process.env.SECRET, {
           expiresIn: "1H",
         });
   
         //Guardo al usuario con su token
-        // user.token = token;
+        user.token = token;
   
         //Devuelvo al usuario
          return res.status(200).json({token: token});
         //  console.log(user);
       }
-       res.status(400).send("Usuario o contraseña inválidas")
+       res.status(400).send("Credenciales inválidas")
     } catch (error) {
       console.log(error);
     }

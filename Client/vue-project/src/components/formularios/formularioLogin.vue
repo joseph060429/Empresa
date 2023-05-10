@@ -39,36 +39,41 @@ const data = reactive({
 });
 
 function iniciarSesion() {
-  if (!data.correo || !data.clave) {
-    data.showAlert = true;
-    data.errorText = "Todos los campos son obligatorios";
-    return;
+  const payload = {
+    email: data.correo,
+    password: data.clave
   }
-  apiClient
-    .post("login", {
-      email: data.correo,
-      password: data.clave,
-      loading: true,
-    })
-    .then((res) => {
-      if (res.status === 200) {
-        if (res.data.token) {
-          localStorage.setItem("token", res.data.token);
-        }
-        console.log(res);
-        authStore.isLogged = true;
-        router.push("/logueadoRegistrado");
-      }
-    })
+  authStore.login(payload)
+  // if (!data.correo || !data.clave) {
+  //   data.showAlert = true;
+  //   data.errorText = "Todos los campos son obligatorios";
+  //   return;
+  // }
+  // apiClient
+  //   .post("login", {
+  //     email: data.correo,
+  //     password: data.clave,
+  //     loading: true,
+  //   })
+  //   .then((res) => {
+  //     if (res.status === 200) {
+  //       if (res.data.token) {
+  //         localStorage.setItem("token", res.data.token);
+  //       }
+  //       console.log(res);
+  //       authStore.isLogged = true;
+  //       router.push("/logueadoRegistrado");
+  //     }
+  //   })
 
-    .catch((err) => {
-      console.log("Error ", err);
-      const res = err.response;
-      if (res.data.errorCode === 106) console.log();
-      data.showAlert = true;
-      data.errorText = "Usuario o contraseña inválidas";
-      router.push("login");
-    });
+  //   .catch((err) => {
+  //     console.log("Error ", err);
+  //     const res = err.response;
+  //     if (res.data.errorCode === 106) console.log();
+  //     data.showAlert = true;
+  //     data.errorText = "Usuario o contraseña inválidas";
+  //     router.push("login");
+  //   });
 }
 
 // -------------------------------------------------------

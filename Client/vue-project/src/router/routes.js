@@ -6,6 +6,7 @@ import vistaLogueadoRegistrado from "../views/vistalogueado.vue";
 import vistaInicio from "../views/vistaInicio.vue";
 import {authStores} from '@/stores'
 import { toast } from "vue3-toastify";
+import {evaluate} from '@/helpers'
 
 // import registrado from "../components/registrado.vue"
 
@@ -45,7 +46,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const test = authStores();
-
+  evaluate()
 
   const token = localStorage.getItem('token')
   if(to.meta.requiresAuth){

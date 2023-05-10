@@ -97,6 +97,7 @@ import { toast } from 'vue3-toastify'
 const userStore = defineStore('user', {
   state: () => {
     return {
+      user: JSON.parse(localStorage.getItem('user')),
       name: null,
       surnames: null,
       email: null,
@@ -139,10 +140,12 @@ const userStore = defineStore('user', {
     },
     
     async login(body) {
+      if(localStorage.getItem('token')){
       localStorage.removeItem('token')
+      }
       this.isLogged = false
-      if (!body.name || !body.password) {
-        toast('Se requiere usuario y contrasenya', {
+      if (!body.email || !body.password) {
+        toast('Se requiere usuario y contraseña', {
           type: 'error',
           pauseOnHover: false,
           pauseOnFocusLoss: false
@@ -153,19 +156,9 @@ const userStore = defineStore('user', {
       apiClient
         .post('login', body)
         .then((res) => {
-          console.log('res', res)
+          console.log('resLogin', res)
           if (auth() === true) {
             toast('Ya estas logueado.', { type: 'error', pauseOnHover: false })
-            return 
-          }
-          if (res.data.errorCode === 106 || res.data.errorCode === 109) {
-            toast('Login incorrecto.', {
-              type: 'error',
-              pauseOnHover: false,
-              pauseOnFocusLoss: false
-            })
-
-            router.push('login')
             return 
           }
           if (res.data.token) {
@@ -177,12 +170,20 @@ const userStore = defineStore('user', {
               pauseOnFocusLoss: false
             })
             evaluate()
-            router.push('loggedin')
+            router.push('logueadoRegistrado')
             return res.data.token
           }
         })
         .catch((err) => {
-          console.log(err)
+          console.log(err.response)
+          if(err.response.status===400){
+            toast(err.response.data, {              
+            type: 'error',
+            pauseOnHover: false,
+            pauseOnFocusLoss: false})
+            router.push('login')
+          }
+          
 
         })
     },
@@ -210,7 +211,7 @@ const userStore = defineStore('user', {
               pauseOnFocusLoss: false
             })
             
-            this.login(body)
+            
           }
           if (res.data.token) {
             toast('Registro correcto!', {

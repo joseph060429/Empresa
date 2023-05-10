@@ -7,8 +7,8 @@ function evaluate(){
     const user = authStores()
     console.log(user);
     if(localStorage.getItem('token')){
-        if(!user.isLogged){
-            payload = JSON.parse(atob(localStorage.getItem('token').split('.')[1])).data
+        if(user.isLogged===false){
+            payload = JSON.parse(atob(localStorage.getItem('token').split('.')[1]))
             Object.keys(payload).forEach((key)=> {
                 Object.keys(user)[key] = payload[key]
                 const cosit = `user.${key}`
