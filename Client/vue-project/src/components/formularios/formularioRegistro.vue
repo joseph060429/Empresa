@@ -1,7 +1,4 @@
 <template>
-  <v-alert v-model="data.showAlert" type="error" class="mb-3" closable
-    >{{ data.errorText }}
-  </v-alert>
   <div class="d-flex justify-center">
     <v-card width="500px">
       <v-form @submit.prevent="authStores().register(data)">
@@ -19,9 +16,9 @@
 
 <script setup>
 import { reactive } from "vue";
-import { router } from "@/router";
-import apiClient from "../../middlewares/axios";
-import { toast } from "vue3-toastify";
+// import { router } from "@/router";
+// import apiClient from "../../middlewares/axios";
+// import { toast } from "vue3-toastify";
 import {authStores} from '@/stores'
 
 const data = reactive({
@@ -29,7 +26,6 @@ const data = reactive({
   surnames: "",
   email: "",
   password: "",
-  showAlert: false,
   errorText: "",
 });
 

@@ -53,7 +53,7 @@ router.beforeEach((to, from, next) => {
       if(token){
           next();
       }else{
-          toast('logueate primero', {type: 'error'})
+          toast('Primero debes loguearte', {type: 'error'})
           next('login')
       }
   }else{

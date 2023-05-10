@@ -148,3 +148,47 @@ const formulario = reactive({
 
 <!-- ref = data.value.+nombre -->
 <!-- reactive = data.+nombre -->
+
+<!-- Asi lo tenia -->
+<!-- 
+async register(body) {
+  apiClient
+    .post("registro", body)
+    .then((res) => {
+      console.log("res", res);
+      console.log(res.data.errorCode);
+      if (res.data.token) {
+        toast("Registro correcto", {
+          type: "success",
+          pauseOnHover: false,
+          pauseOnFocusLoss: false,
+        });
+        this.login(body);
+      }
+    })
+    .catch((err) => {
+      console.log(err.response);
+      if (err.response.status === 400) {
+        toast(err.response.data, {
+          type: "error",
+          pauseOnHover: false,
+          pauseOnFocusLoss: false,
+        });
+        router.push('login')
+      }
+    });
+}, -->
+
+
+<!-- ICONOS
+
+<v-btn
+        v-for="icon in icons"
+        :key="icon"
+        class="mx-4"
+        :icon="icon"
+        variant="plain"
+        size="small"
+        href="https://www.google.es"
+        target="_blank"
+      ></v-btn> -->

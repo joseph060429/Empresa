@@ -1,7 +1,4 @@
 <template>
-  <v-alert v-model="data.showAlert" type="error" class="mb-3" closable
-    >{{ data.errorText }}
-  </v-alert>
   <div class="d-flex justify-center">
     <v-card width="500px">
       <v-form @submit.prevent="iniciarSesion">

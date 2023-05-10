@@ -6,14 +6,22 @@
       <v-spacer></v-spacer>
 
       <v-btn
-        v-for="icon in icons"
-        :key="icon"
-        class="mx-4"
-        :icon="icon"
+        v-icon
+        icon="mdi-instagram"
         variant="plain"
         size="small"
+        href="https://www.instagram.com/supe_puerto/"
+        target="_blank"
       ></v-btn>
-      
+      <v-btn
+        v-icon
+        icon="mdi-facebook"
+        class="mx-4"
+        variant="plain"
+        size="small"
+        href="https://www.facebook.com/MunicipalidadSupePuerto/"
+        target="_blank"
+      ></v-btn>
     </div>
 
     <div class="px-4 py-2 bg-blue text-center w-100">
@@ -22,20 +30,13 @@
   </v-footer>
 </template>
 
-<script setup>
-// import { routerKey } from 'vue-router';
-const icons = ["mdi-facebook", "mdi-instagram"];
-
-function instagram() {
-  router.push("/www.instagram.com/supe_puerto/");
-}
-</script>
+<script setup></script>
 
 <style>
 #footer {
   position: fixed;
   bottom: 0;
-  width: 99.9vw;
+  width: 99vw;
 }
 
 .mdi-facebook {
@@ -51,6 +52,5 @@ function instagram() {
     #d6249f 60%,
     #285aeb 90%
   );
-  
 }
 </style>

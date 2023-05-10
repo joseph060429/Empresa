@@ -1,18 +1,22 @@
 <template>
   <nav>
-    <div>
+    <div class="nav_bar">
       <v-toolbar
         color="primary"
         dark
         prominent
         image="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+
+        
       >
-        <v-toolbar-title class="font-weight-black"> <h2>Puerto Supe</h2></v-toolbar-title>
+        <v-toolbar-title class="font-weight-black">
+          <h2 id="title_cabecera">Municipalidad Distrital de Puerto Supe</h2>
+        </v-toolbar-title>
 
         <v-spacer></v-spacer>
 
         <v-btn to="/" color="white"
-         ><v-icon icon="mdi-home" />
+          ><v-icon icon="mdi-home" />
           <h4>Inicio</h4></v-btn
         >
         <v-btn
@@ -21,12 +25,13 @@
           class="ma-2"
           v-if="!authStore.isLogged"
         >
-          <v-icon icon="mmdi mdi-account"/>
+          <v-icon icon="mmdi mdi-account" />
           <h4>Registro</h4></v-btn
         >
         <v-btn to="/login" color="white" v-if="!authStore.isLogged">
-          <v-icon icon="mdi mdi-login"/>
-          <h4>Login</h4></v-btn>
+          <v-icon icon="mdi mdi-login" />
+          <h4>Login</h4></v-btn
+        >
         <botonCerrarSesion v-if="authStore.isLogged"></botonCerrarSesion>
       </v-toolbar>
     </div>
@@ -56,4 +61,9 @@ const authStore = authStores();
 // const isLogged = storeToRefs(authStore)
 // const token = localStorage.getItem('token')
 </script>
-
+<style>
+#title_cabecera {
+  color: aliceblue;
+  margin-left: 2%;
+}
+</style>
