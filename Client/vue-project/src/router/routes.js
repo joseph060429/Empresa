@@ -4,9 +4,11 @@ import Registro from "../views/registro.vue";
 import Login from "../views/loging.vue";
 import vistaLogueadoRegistrado from "../views/vistalogueado.vue";
 import vistaInicio from "../views/vistaInicio.vue";
-import {authStores} from '@/stores'
+import { authStores } from "@/stores";
 import { toast } from "vue3-toastify";
-import {evaluate} from '@/helpers'
+import { evaluate } from "@/helpers";
+import { storeToRefs } from "pinia";
+import { onMounted } from "vue";
 
 // import registrado from "../components/registrado.vue"
 
@@ -33,9 +35,16 @@ const routes = [
     path: "/logueadoRegistrado",
     name: "Logueado",
     component: vistaLogueadoRegistrado,
-    meta:{
-      requiresAuth: true
-    }
+    meta: {
+      requiresAuth: true,
+    },
+  },
+
+  // Ruta de errores
+  {
+    path: "/:pathMach(.*)*",
+    name: "NotFound",
+    component: () => import("../views/vistaError404.vue"),
   },
 ];
 
@@ -44,24 +53,28 @@ const router = createRouter({
   routes,
 });
 
+// Esto funciona
+
 router.beforeEach((to, from, next) => {
   const test = authStores();
-  evaluate()
+  evaluate();
 
-  const token = localStorage.getItem('token')
-  if(to.meta.requiresAuth){
-      if(token){
-          next();
-      }else{
-          toast('Primero debes loguearte', {type: 'error'})
-          next('login')
-      }
-  }else{
-    next()
+  if (["Login", "Registro"].includes(to.name) && test.isLogged) {
+    next({ name: "Inicio" });
+    toast("Ya estas logueado", { type: "error" });
+    next("login");
   }
 
-  if (to.name === "Logueado" && test.isLogged) {
-    next('/')
+  const token = localStorage.getItem("token");
+  if (to.meta.requiresAuth) {
+    if (token) {
+      next();
+    } else {
+      toast("Primero debes loguearte", { type: "error" });
+      next("login");
+    }
+  } else {
+    next();
   }
 });
 

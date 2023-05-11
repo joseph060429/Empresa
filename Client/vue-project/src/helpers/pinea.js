@@ -9,6 +9,7 @@ function evaluate(){
     if(localStorage.getItem('token')){
         if(user.isLogged===false){
             payload = JSON.parse(atob(localStorage.getItem('token').split('.')[1]))
+            console.log(payload);
             Object.keys(payload).forEach((key)=> {
                 Object.keys(user)[key] = payload[key]
                 const cosit = `user.${key}`
@@ -20,7 +21,7 @@ function evaluate(){
 
         }
     }
-
+return
 
 }
 

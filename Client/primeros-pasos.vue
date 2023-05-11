@@ -192,3 +192,27 @@ async register(body) {
         href="https://www.google.es"
         target="_blank"
       ></v-btn> -->
+
+
+
+      <!-- // probando 3
+      //  const { authenticated } = storeToRefs(userStore);
+      
+      // function verificarLogin() {
+      //   if (getToken()) {
+      //     authStores().isLogged = true;
+      //   } else {
+      //     authStores().isLogged = false;
+      //   }
+      // }
+      
+      // router.beforeEach((to, from, next) => {
+      //   verificarLogin();
+      //   if(to.matched.some(record => record.meta.requiresGuest) && authStores().isLogged){
+      //     next({name:"inicio"});
+      //   }else {
+      //     next();
+      //   }
+      
+      
+      // }) -->

@@ -10,7 +10,7 @@
         
       >
         <v-toolbar-title class="font-weight-black">
-          <h2 id="title_cabecera">Municipalidad Distrital de Supe Puerto</h2>
+          <h2 id="title_cabecera">Supe Puerto</h2>
         </v-toolbar-title>
 
         <v-spacer></v-spacer>

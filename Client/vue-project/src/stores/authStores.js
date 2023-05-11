@@ -87,7 +87,6 @@ const userStore = defineStore("user", {
       // user: JSON.parse(localStorage.getItem("user")),
       name: null,
       surnames: null,
-      edad: 17,
       email: null,
       id: null,
       isLogged: false,
@@ -217,7 +216,7 @@ const userStore = defineStore("user", {
         });
     },
     logout() {
-      console.log((this.isLogged = false));
+      this.$reset()
       localStorage.removeItem("token");
       router.push("login");
     },

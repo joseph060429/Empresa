@@ -4,5 +4,6 @@ export {default as inicio} from './inicio.vue'
 export {default as botonCerrarSesion} from './botonCerrarSesion.vue'
 export {default as footerComponent} from "./footerComponent.vue"
 export {default as cabecera} from "./cabecera.vue"
+export * from './errores'
 
 
