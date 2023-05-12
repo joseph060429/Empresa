@@ -145,7 +145,7 @@ const userStore = defineStore("user", {
       apiClient
         .post("login", body)
         .then((res) => {
-          console.log("resLogin", res);
+          // console.log("resLogin", res);
           if (auth() === true) {
             toast("El usuario ya existe", {
               type: "error",
@@ -155,7 +155,7 @@ const userStore = defineStore("user", {
           }
           if (res.data.token) {
             localStorage.setItem("token", res.data.token);
-            console.log(res.data.token);
+            // console.log(res.data.token);
             toast("Login correcto!", {
               type: "success",
               pauseOnHover: false,
