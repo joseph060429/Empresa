@@ -22,6 +22,6 @@
 <script setup>
 import { footerComponent } from "@/components";
 import { cabecera } from "@/components";
-// import { inicio } from "@/components"
+
 
 </script>

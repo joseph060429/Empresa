@@ -34,6 +34,10 @@ cert: fs.readFileSync("src/Certificado_HTTPS/client-cert.pem")}, app).listen(app
 })
 
 sequelize.sync();
+//Para reiniciar las tablas//
 //sequelize.sync({force: true})
 
 module.exports = app;
+
+
+

@@ -5,7 +5,7 @@
     Name: {{ authStore.name }}  <br/>
     Surnames: {{ authStore.surnames }} <br/>
     Email: {{ authStore.email }} <br/>
-    Prueba tildes: á à ä â 
+    Password: {{ authStore.password }}
    
   </div>
 </template>

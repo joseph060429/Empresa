@@ -78,11 +78,25 @@ const createNewUser = async (req, res) => {
          return res.status(200).json({token: token});
         //  console.log(user);
       }
-       res.status(400).send("Credenciales inválidas")
+       res.status(400).send("Usuario o contraseña inválidas")
     } catch (error) {
       console.log(error);
     }
   };
+
+
+  // PROBANDO DEBUG//
+
+// function esPrimo(numero) {
+//     if(numero <=2) return false;
+//     for (let i = 2; i<= Math.sqrt(numero); i++){
+//         if(numero % i === 1){
+//             return false
+//         }
+//     }
+//     return true
+
+// }
 
   module.exports = {
     loginUsuario, createNewUser
