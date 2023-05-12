@@ -15,6 +15,7 @@ const router = require("express").Router();
  // Borrar Usuario desde super Usuario
 router.delete("/elimina", deleteUser);
 
+
 //Borrar usuario siendo usuario
 router.delete("/eliminaUsuario",byDeleteUser);
   
