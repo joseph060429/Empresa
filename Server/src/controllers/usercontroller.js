@@ -18,7 +18,7 @@ const deleteUser = async (req, res) => {
     //Si se encuentra el email del usuario entonces se elimina
     if (user) {
       const elimina = await Users.destroy({
-        where: { email: req.body.email },
+        where: { email: email },
       });
 
       if (elimina === 1) {

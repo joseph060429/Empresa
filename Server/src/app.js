@@ -23,6 +23,9 @@ app.set("port", 4000);
 app.use("/api", verificarToken, routesProtegidas);
 app.use(routesNoProtegidas)
 
+// Lo puse ahora
+// app.use(express.static(path.join(__dirname, '../../Client/vue-project/src/components/logueadoRegistrado.vue')))
+
 
 //Conexion a base de datos
 const sequelize = require("./databases/connection").sequelize;

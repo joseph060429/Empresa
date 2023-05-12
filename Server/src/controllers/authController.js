@@ -1,8 +1,12 @@
+const path = require('path');
+const multer = require('multer');
+
 
 const Users = require("../models/user");
 const jwt = require("jsonwebtoken");
 require("dotenv").config;
 const bcrypt = require("bcrypt");
+const { log } = require('console');
 
 const createNewUser = async (req, res) => {
     try {
@@ -84,20 +88,34 @@ const createNewUser = async (req, res) => {
     }
   };
 
+  //Probando subir archivo//
+    // const fileFilter = function(req,file, cb) {
+    //   const allowedTypes =["application/pdf", "application/docx", "application/txt", "image/jpg", "image/jpeg", "image/png", "image/gif"];
+    //   if(!allowedTypes.includes(file.mimetype)){
+    //     const error = new Error("wrong file type");
+    //     error.code="LIMIT_FILE_TYPES";
+    //     return cb(error, false);
+    //   }
+    //     cb(null, true)
 
-  // PROBANDO DEBUG//
+    // }
 
-// function esPrimo(numero) {
-//     if(numero <=2) return false;
-//     for (let i = 2; i<= Math.sqrt(numero); i++){
-//         if(numero % i === 1){
-//             return false
-//         }
-//     }
-//     return true
+    // const storage = multer.diskStorage({
+    //     destination: '../../uploads',
+    //     filename:(req, file, cb)=>{
+    //       cb(null,file.originalname);
+    //     }
 
-// }
+    // })
+
+    // const files=[];
+
+    // const upload = multer({storage,fileFilter});
+  
+
+
+
 
   module.exports = {
-    loginUsuario, createNewUser
+    loginUsuario, createNewUser 
   }

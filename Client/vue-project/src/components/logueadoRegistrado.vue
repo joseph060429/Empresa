@@ -7,9 +7,9 @@
         <v-layout row wrap>
           <v-text-field
             label=""
-            placeholder="Máximo 100 caracteres"
+            placeholder="Máximo 150 caracteres"
             color="blue"
-            maxlength="100"
+            maxlength="150"
           ></v-text-field>
         </v-layout>
       </v-container>
