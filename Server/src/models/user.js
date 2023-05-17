@@ -47,7 +47,24 @@ const Users = sequelize.define(
 
     token:{
       type: DataTypes.STRING
+    },
+    genero:{
+      type: DataTypes.STRING,
+      allowNull:  true,
+
+    },
+    LugaresAconocer:{
+      type: DataTypes.STRING,
+      allowNull: true
+
+    },
+
+    opiniones:{
+      type: DataTypes.STRING,
+      allowNull: true
     }
+
+
 
 
   },

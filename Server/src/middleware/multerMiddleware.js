@@ -4,19 +4,16 @@ const storage = multer.diskStorage({
   // Defino la ubicación donde se almacenarán los archivos cargados
   // cb = callback
   destination: function (req, res, cb) {
-    cb(null, "../uploads");
+    cb(null, "./src/uploads");
   },
   // Defino el nombre del archivo cuando se almacena
 
   filename: function (req, file, cb) {
-    cb(
-      null,
-      file.fieldname,
-      "-",
-      Date.now,
-      ".",
-      file.originalname.split(".").pop()
-    );
+
+    // console.log(req.user.id, "request user id")
+    const fieldname =
+      ( "archivo-" + Date.now() + '.' + file.mimetype.split('/').at(1));
+    cb(null, fieldname);
   },
 });
 
@@ -32,14 +29,15 @@ const fileFilter = function (req, file, cb) {
     "image/gif",
   ];
 
-  if (allowedTypes.includes(file.mimetype0)) {
+  if (allowedTypes.includes(file.mimetype)) {
     // El archivo es aceptable, entonces llama al callback con true
     cb(null, true);
   } else {
     // El archivo no es aceptable, entonces llama al callback con false y un error
-    cb(new Error("Archivo no valido"));
+    cb(new Error("Archivo no valido"), false);
   }
 };
 
-const upload = multer({storage:storage, fileFilter: fileFilter});
+const upload = multer({ storage: storage, fileFilter: fileFilter });
 
+module.exports.upload = upload;

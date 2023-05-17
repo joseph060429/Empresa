@@ -4,7 +4,7 @@
       <v-form @submit.prevent="authStores().register(data)">
         <v-text-field v-model="data.name" label="Nombre" type="text" />
         <v-text-field v-model="data.surnames" label="Apellidos" type="text" />
-        <v-text-field v-model="data.email" label="Correo" type="e-mail" />
+        <v-text-field v-model="data.email" label="Correo" placeholder="ejemplo@gmail.com" type="e-mail" />
         <v-text-field v-model="data.password" label="Contraseña" type="password" />
         <v-btn type="submit"
           >Registrarse <v-icon icon="mdi mdi-account-plus"
@@ -26,7 +26,7 @@ const data = reactive({
   surnames: "",
   email: "",
   password: "",
-  errorText: "",
+  // errorText: "",
 });
 
 // function registrarse() {
