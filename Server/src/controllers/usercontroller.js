@@ -61,56 +61,6 @@ if(!user){
 
 };
 
-  // try {
-  //   //Buscar Usuario por email//
-  //   const user = await Users.findOne({
-  //     where: {
-  //       email: email,
-  //     },
-  //   });
-
-  //   //Si existe el usuario deesencripto la contraseña//
-  //   if (user) {
-  //       const contraseñaDesencriptada = await bcrypt.compare(password,user.dataValues.password);
-  //     const elimina = await user.destroy({ where: { ID: req.params.id } });
-
-  //     console.log(elimina);
-
-  //     if(elimina === 1 && contraseñaDesencriptada){
-  //       res.send("Usuario eliminado")
-  //     }
-  //   } else {
-  //     return res.status(401).send("El usuario y la contraseña no coinciden");
-  //   }
-  // } catch (error) {
-  //   console.log(error);
-  // }
-
-  // if (user) {
-  //   //  console.log(await bcrypt.compare(password, user.dataValues.password))
-  //   //  const elimina = await bcrypt.compare(password, user.dataValues.password)
-  //   //  console.log(elimina);
-
-  //   //  res.send('ok! usuario eliminado por propio usuario')
-
-  //   if(elimina === true){
-  //    Users.destroy({
-  //       where: { email: email}
-  //     })
-  //     res.send('Usuario eliminado correctamente')
-  //   }
-  // const elimina = await Users.destroy({
-  //   where: { email: email },
-
-  // });
-
-  // console.log(elimina);
-
-  // if (elimina === 1) {
-  //   return res.send("Usuario eliminado");
-  // }
-// };
-
 //Actualizar usuario
 const actualizarUsuario = async (req, res) => {
   const { name, password } = req.body;

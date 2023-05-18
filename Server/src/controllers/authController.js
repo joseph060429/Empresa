@@ -8,6 +8,12 @@ require("dotenv").config;
 const bcrypt = require("bcrypt");
 const { log } = require('console');
 
+/**
+ * 
+ * @param {*} req Funcion genericas 
+ * @param {*} res Funcion generica
+ * @returns Si no tiene email, name, surnames, password sacará un mensaje con "Todos los campos son requeridos"
+ */
 const createNewUser = async (req, res) => {
     try {
       const { name, email, password, surnames } = req.body;
@@ -53,7 +59,16 @@ const createNewUser = async (req, res) => {
       console.log(error);
     }
   };
+
+
+
   //LOGIN//
+  /**
+   * 
+   * @param {*} req Funcion generica 
+   * @param {*} res Funcion generica
+   * @returns Si no tiene la clave o el paswword retornará un mensaje que diga que todo los campos son requeridos
+   */
   const loginUsuario = async (req, res) => {
     try {
       const { email, password } = req.body;
