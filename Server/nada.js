@@ -312,4 +312,109 @@ const loginUsuario = async (req, res) => {
 };
 
 
- 
+// TEST
+
+
+// Mock the necessary dependencies
+jest.mock('bcrypt');
+jest.mock('jsonwebtoken');
+jest.mock('./models');
+const  createNewUser  = require('../authController'); // Replace 'your-module' with the appropriate module name
+
+
+
+describe('createNewUser', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('should create a new user and return a token', async () => {
+    const req = {
+      body: {
+        name: 'John',
+        email: 'john@example.com',
+        password: 'password123',
+        surnames: 'Doe',
+      },
+    };
+
+    const res = {
+      status: jest.fn().mockReturnThis(),
+      send: jest.fn(),
+    };
+
+    const mockUser = {
+      name: 'John',
+      email: 'john@example.com',
+      password: 'hashedPassword',
+      surnames: 'Doe',
+    };
+
+    const mockToken = 'mockToken';
+
+    // Mock the behavior of the dependencies
+    Users.findOne.mockResolvedValue(null);
+    bcrypt.hash.mockResolvedValue('hashedPassword');
+    Users.create.mockResolvedValue(mockUser);
+    jwt.sign.mockReturnValue(mockToken);
+
+    // Call the createNewUser function
+    await createNewUser(req, res);
+
+    // Check if the necessary functions and methods were called with the correct arguments
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.send).toHaveBeenCalledWith('Todos los campos son requeridos');
+    expect(Users.findOne).not.toHaveBeenCalled();
+
+    // Modify the following expectations based on your implementation of loginUsuario
+    expect(bcrypt.hash).toHaveBeenCalledWith('password123', 10);
+    expect(Users.create).toHaveBeenCalledWith({
+      name: 'John',
+      surnames: 'Doe',
+      email: 'john@example.com',
+      password: 'hashedPassword',
+    });
+    expect(jwt.sign).toHaveBeenCalledWith({ email: 'john@example.com' }, process.env.SECRET, {
+      expiresIn: '1H',
+    });
+    expect(res.send).toHaveBeenCalledWith('Token: mockToken');
+  });
+
+  it('should return an error if the user already exists', async () => {
+    const req = {
+      body: {
+        name: 'John',
+        email: 'john@example.com',
+        password: 'password123',
+        surnames: 'Doe',
+      },
+    };
+
+    const res = {
+      status: jest.fn().mockReturnThis(),
+      send: jest.fn(),
+    };
+
+    const mockUser = {
+      name: 'John',
+      email: 'john@example.com',
+      password: 'hashedPassword',
+      surnames: 'Doe',
+    };
+
+    Users.findOne.mockResolvedValue(mockUser);
+
+    await createNewUser(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.send).toHaveBeenCalledWith('El usuario ya existe por favor logueate');
+    expect(Users.findOne).toHaveBeenCalledWith({ where: { email: 'john@example.com' } });
+    expect(Users.create).not.toHaveBeenCalled();
+    expect(bcrypt.hash).not.toHaveBeenCalled();
+    expect(jwt.sign).not.toHaveBeenCalled();
+    // Modify the following expectation based on your implementation of loginUsuario
+    expect(res.send).not.toHaveBeenCalled();
+  });
+
+  // Add more test cases as needed
+});
