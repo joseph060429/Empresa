@@ -4,9 +4,10 @@ const multer = require('multer');
 
 const Users = require("../models/user");
 const jwt = require("jsonwebtoken");
-require("dotenv").config;
+//Esto lo puse porque no me reconocia el .env //
+require("dotenv").config({ path: path.resolve(__dirname, '../../.env') });
 const bcrypt = require("bcrypt");
-const { log } = require('console');
+// const { log } = require('console');
 
 /**
  * 
