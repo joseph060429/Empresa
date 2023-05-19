@@ -38,3 +38,7 @@ test("Iniciar sesión el usuario y devolver un token", async () => {
 //   expect(res.json).toHaveBeenCalledWith({ token: expect.any(String) });
 //   expect(res.send).not.toHaveBeenCalled();
 // });
+
+
+
+
