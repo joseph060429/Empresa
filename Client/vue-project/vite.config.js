@@ -34,4 +34,13 @@ export default defineConfig({
       cert: fs.readFileSync("src/Certificado_HTTPS/client-cert.pem"),
     },
   },
+
+// CON ESTO ME HACE EL TEST E IGNORA EL CSS
+  test : {
+    globals: true,
+    environment: "jsdom",
+    deps: {
+      inline: ['vuetify']
+    }
+  }
 });

@@ -38,21 +38,16 @@
     <div>
       <v-container>
         <v-title>¿Deseas subir un archivo? </v-title>
-        <div>
           <v-file-input
-            @change="onFileChange"
-            chips
-            multiple
-            label="Subir archivo"
-            color="blue"
-          ></v-file-input>
-          <v-btn
-            @click="subirArchivo"
-            id="subirArchivo"
-            prepend-icon="mdi-upload"
-            >Subir archivo</v-btn
-          >
-        </div>
+          @change="onFileChange"
+          chips
+          multiple
+          label="Subir archivo"
+          color="blue"
+        ></v-file-input>
+        <v-btn @click="subirArchivo" id="subirArchivo" prepend-icon="mdi-upload"
+          >Subir archivo</v-btn
+        >
       </v-container>
     </div>
     <!-- <div> -->
@@ -65,6 +60,7 @@
         <v-btn
           to="/"
           id="guardarCambios"
+          @click="guardarCambios"
           prepend-icon="mdi mdi-content-save-check"
           >Guardar cambios</v-btn
         >
@@ -117,10 +113,8 @@ async function subirArchivo() {
     });
 }
 
-
-async function guaradrCambios(){
-      toast("Cambios guardados correctamente")
-
+async function guardarCambios() {
+  toast("Cambios guardados correctamente");
 }
 </script>
 

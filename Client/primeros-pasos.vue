@@ -216,3 +216,102 @@ async register(body) {
       
       
       // }) -->
+
+
+
+
+
+      <!-- TESTEO DEL formularioRegistro -->
+
+
+<!-- // import { createPinia, setActivePinia } from "pinia";
+import { beforeEach, describe, expect, it } from "vitest";
+// import { ref } from "vue";
+import { formularioRegistro } from "../formularioRegistro.vue";
+// import { mount as vueMount } from "@vue/test-utils"
+import {authStores} from '@/stores'
+
+
+import { mount } from '@vue/test-utils';
+
+
+describe('My componenente', () => {
+  it('should register user when form is submitted', async () => {
+    // Montar el componente
+    const wrapper = mount(formularioRegistro);
+
+    // Establecer los valores de los campos del formulario
+    await wrapper.find('[label="Nombre"]').setValue('John');
+    await wrapper.find('[label="Apellidos"]').setValue('Doe');
+    await wrapper.find('[label="Correo"]').setValue('johndoe@example.com');
+    await wrapper.find('[label="Contraseña"]').setValue('password');
+
+    // Simular el envío del formulario
+    await wrapper.find('form').trigger('submit.prevent');
+
+    // Esperar a que se complete la llamada a `authStores().register`
+    await wrapper.vm.$nextTick();
+
+    // Comprobar que se ha llamado a `authStores().register` con los datos correctos
+    expect(authStores().register).toHaveBeenCalledOnce({
+      name: 'John',
+      surnames: 'Doe',
+      email: 'john.doe@example.com',
+      password: 'password',
+    });
+  });
+});
+
+
+
+
+
+ESTE ES OTRO
+
+
+
+
+
+
+
+
+
+
+
+
+// function mounthTheForm() {
+//   const wrapper = mount(formularioLogin, { props: {} });
+//   return wrapper;
+// }
+
+// describe("El formulario", () => {
+//   it("Se monta correctamente", () => {
+//     expect(mounthTheForm()).toBeTruthy();
+//     //Comprobar el montaje del boton submit
+//     expect(mounthTheForm().text()).toContain("Submit");
+//   });
+
+//   it("Haga click en el boton ", async () => {
+//     const form = mounthTheForm().find("form");
+//     // La función spyOn informará si el elemento
+//     // ha recibido un clic.
+//     const spyOnForm = vi.spyOnForm(form, "trigger");
+//     await form.trigger("click");
+//     expect(spyOnForm).toHaveBeenCalledOnce();
+//   });
+
+//   it("Representa el valor de entrada", async () => {
+//     const input = mounthTheForm().find('input')
+//     // el input se renderiza con un valor vacío
+//     expect(input.text()).toContain('')
+//      // agrega un valor al input
+//      await input.setValue('juanitoPereza@gmail.com')
+//      //Comprobar que el inputu tiene un valor
+//      expect(input.element.value).toEqual('juanitoPereza@gmail.com')
+
+
+//   })
+
+// }); -->
+
+

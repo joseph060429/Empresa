@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto" max-width="1000px">
+  <v-card class="mx-auto" width="50%">
     <v-img
       class="align-end text-white"
       height="200"

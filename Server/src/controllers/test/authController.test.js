@@ -1,4 +1,4 @@
-const { loginUsuario, createNewUser } = require("../authController");
+const { loginUsuario} = require("../authController");
 const { mockResponse } = require("jest-mock-req-res");
 
 
