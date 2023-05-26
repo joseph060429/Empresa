@@ -26,42 +26,8 @@ const data = reactive({
   surnames: "",
   email: "",
   password: "",
-  // errorText: "",
+  
 });
 
-// function registrarse() {
-//   if (!data.correo || !data.clave || !data.nombre || !data.apellidos) {
-//     data.showAlert = true;
-//     data.errorText = "Todos los campos son obligatorios";
-//      return;
-    
-//   } 
-//   apiClient
-//     .post("registro", {
-//       name: data.nombre,
-//       surnames: data.apellidos,
-//       email: data.correo,
-//       password: data.clave,
-//       // showAlert: false,
-//       // errorText: "",
-//     })
-//     .then((res) => {
-//       if (res.status === 201) {
-//         if (res.data.token) {
-//           localStorage.setItem("token", res.data.token);
-//           router.push("/logueadoRegistrado");
-//         }
-//         console.log(res);
-        
-//       }
-//     })
-//     .catch((err) => {
-//       console.log("Error ", err);
-//       const res = err.response;
-//       if (res.data.errorCode === 400) console.log();
-//       data.showAlert = true;
-//       data.errorText = "El usuario ya existe, por favor logueate";
-//       router.push("registro");
-//     });
-// }
+
 </script>

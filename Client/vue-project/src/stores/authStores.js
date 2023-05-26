@@ -54,6 +54,8 @@ const userStore = defineStore("user", {
       return await apiClient.put(`updateUser/${id}`, body);
     },
 
+
+    // Para el login//
     async login(body) {
       if (localStorage.getItem("token")) {
         localStorage.removeItem("token");
@@ -104,6 +106,9 @@ const userStore = defineStore("user", {
           }
         });
     },
+
+    //Para el registro
+
     async register(body) {
       if (!body.name || !body.password || !body.surnames || !body.email) {
         toast("Todos los campos son obligatorios", {
@@ -141,7 +146,9 @@ const userStore = defineStore("user", {
           }
         });
     },
-    logout() {
+
+    //Para cerrar sesion//
+    async logout() {
       this.$reset()
       localStorage.removeItem("token");
       router.push("login");

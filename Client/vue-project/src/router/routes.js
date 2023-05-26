@@ -53,7 +53,7 @@ const router = createRouter({
   routes,
 });
 
-// Esto funciona
+// Esto funciona para que cuando ya estes logueado no vuelvas a loguearte o si no estas logueado entrar a una ruta protegida
 
 router.beforeEach((to, from, next) => {
   const test = authStores();

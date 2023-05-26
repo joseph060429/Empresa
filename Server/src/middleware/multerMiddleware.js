@@ -1,5 +1,8 @@
 const multer = require("multer");
 
+
+//El multer nos sirve para ver que extensiones de archivos se pueden subir
+
 const storage = multer.diskStorage({
   // Defino la ubicación donde se almacenarán los archivos cargados
   // cb = callback

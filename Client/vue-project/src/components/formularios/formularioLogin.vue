@@ -19,11 +19,11 @@
 
 <script setup>
 import { ref, reactive } from "vue";
-import { router } from "@/router";
-import apiClient from "../../middlewares/axios";
-import { toast } from "vue3-toastify";
+// import { router } from "@/router";
+// import apiClient from "../../middlewares/axios";
+// import { toast } from "vue3-toastify";
 import { authStores } from "@/stores";
-import useAuthStore from "../../stores/authStores";
+
 
 const authStore = authStores();
 
@@ -38,56 +38,8 @@ const data = reactive({
 function iniciarSesion() {
   const payload = {
     email: data.correo,
-    password: data.clave
-  }
-  authStore.login(payload)
-  // if (!data.correo || !data.clave) {
-  //   data.showAlert = true;
-  //   data.errorText = "Todos los campos son obligatorios";
-  //   return;
-  // }
-  // apiClient
-  //   .post("login", {
-  //     email: data.correo,
-  //     password: data.clave,
-  //     loading: true,
-  //   })
-  //   .then((res) => {
-  //     if (res.status === 200) {
-  //       if (res.data.token) {
-  //         localStorage.setItem("token", res.data.token);
-  //       }
-  //       console.log(res);
-  //       authStore.isLogged = true;
-  //       router.push("/logueadoRegistrado");
-  //     }
-  //   })
-
-  //   .catch((err) => {
-  //     console.log("Error ", err);
-  //     const res = err.response;
-  //     if (res.data.errorCode === 106) console.log();
-  //     data.showAlert = true;
-  //     data.errorText = "Usuario o contraseña inválidas";
-  //     router.push("login");
-  //   });
+    password: data.clave,
+  };
+  authStore.login(payload);
 }
-
-// -------------------------------------------------------
-
-// const iniciarSesion = async () => {
-//   try {
-//     await test.login(data.correo, data.clave);
-//   } catch (error) {
-//     console.log(error);
-//   }
-
-// }
-
-
-
-// function iniciarSesion(){
-//   console.log(data);
-//   useAuthStore()
-// }
 </script>

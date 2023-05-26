@@ -2,12 +2,12 @@
   <h1 id="titleLogueado">
     Bienvenido {{ authStore.name }} {{ authStore.surnames }}
   </h1>
-  <v-form>
+  <v-form >
     <div>
       <v-container>
         <v-title>Danos tu opinion: </v-title>
         <v-layout row wrap>
-          <v-text-field
+          <v-text-field v-model="data.opiniones"
             label="Máximo 150 caracteres"
             color="blue"
             maxlength="150"
@@ -18,17 +18,19 @@
     <div>
       <v-container>
         <v-title>Sitios que deseas visitar: </v-title>
-        <v-select
+        <v-select v-model="data.LugaresAconocer"
           label="Escoge un lugar turístico"
           :items="['La Isla del Faraón', 'El Muelle', 'El Faro', 'El Áspero']"
           color="blue"
+         
         ></v-select>
       </v-container>
     </div>
     <div>
       <v-container>
         <v-title>Escoge tu sexo: </v-title>
-        <v-radio-group>
+        <v-radio-group v-model="data.genero">
+          
           <v-radio label="Hombre" value="1" color="blue"></v-radio>
           <v-radio label="Mujer" value="2" color="blue"></v-radio>
         </v-radio-group>
@@ -38,20 +40,23 @@
     <div>
       <v-container>
         <v-title>¿Deseas subir un archivo? </v-title>
-        <v-file-input
+        <v-file-input 
           @change="onFileChange"
           chips
           multiple
           label="Subir archivo"
-          color="blue"
+          color="white"
           v-model="archivo"
+          center-affix
           @click:clear="clear"
+          :hide-details="false"
+          hint="Sube un archivo que no pese más de 1MB y con formato "
+          
         ></v-file-input>
         <v-btn
           @click="
             subirArchivo();
-            archivo = null;
-          "
+            archivo = null;"
           id="subirArchivo"
           prepend-icon="mdi-upload"
           >Subir archivo</v-btn
@@ -66,21 +71,29 @@
           id="guardarCambios"
           @click="guardarCambios"
           prepend-icon="mdi mdi-content-save-check"
-          >Guardar cambios</v-btn
-        >
+          > Guardar cambios
+        </v-btn>
       </v-flex>
     </v-row>
   </v-form>
+ 
 </template>
 
 <script setup>
 import { authStores } from "@/stores";
-import { ref } from "vue";
+import { ref, reactive } from "vue";
 import { apiClient } from "@/middlewares";
 import { toast } from "vue3-toastify";
 const authStore = authStores();
 
-console.log(authStore);
+
+
+const data = reactive({
+    genero: "",
+    LugaresAconocer: "",
+    opiniones: ""
+
+})
 
 //Subir archivo
 var fileToUpload = null;
@@ -113,8 +126,12 @@ async function subirArchivo() {
     });
 }
 
+
+
+
 //Guardar cambios
 async function guardarCambios() {
+
   toast("Cambios guardados correctamente");
 }
 </script>
@@ -142,5 +159,9 @@ label {
 #guardarCambios {
   font-family: "Times New Roman";
   justify-content: right;
+}
+
+.hint{
+  color: brown;
 }
 </style>
