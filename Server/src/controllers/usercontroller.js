@@ -72,7 +72,7 @@ const byDeleteUser = async (req, res) => {
 
 //Actualizar usuario siendo usuario
 const updateUser = async (req, res) => {
-  const { id , genero} = req.body;
+  const { id , genero, opiniones} = req.body;
 
   // console.log(req.user);
   try {
@@ -81,7 +81,8 @@ const updateUser = async (req, res) => {
       res.status(404).send("No se encontró el usuario");
     }
     const result = await Users.update(
-      { genero: genero },
+      { genero: genero,
+        opiniones: opiniones},
       { where: { id: id } }
     );
 

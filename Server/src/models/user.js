@@ -2,7 +2,6 @@
 const sequelize = require("../databases/connection").sequelize;
 const { Sequelize, DataTypes } = require("sequelize");
 
-
 const Users = sequelize.define(
   "Users",
   {
@@ -12,22 +11,18 @@ const Users = sequelize.define(
       // primaryKey: true,
       allowNull: false,
       isUnique: true,
-      defaultValue: Sequelize.UUIDV4,//Esto da un valor por defecto
+      defaultValue: Sequelize.UUIDV4, //Esto da un valor por defecto
       //autoIncrement: true,
     },
 
-
-    name:{
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
-
     },
-    surnames:{
+    surnames: {
       type: DataTypes.STRING,
-      allowNull: false
-
+      allowNull: false,
     },
-
 
     email: {
       type: DataTypes.STRING,
@@ -42,34 +37,34 @@ const Users = sequelize.define(
     password: {
       type: DataTypes.STRING,
       allowNull: false,
-      
     },
-
-    token:{
-      type: DataTypes.STRING
-    },
-    genero:{
+    genero: {
       type: DataTypes.STRING,
-      allowNull:  true,
+      allowNull: true,
+      // defaultValue: "No responde",
+      validate: {
+        isIn: {
+          args: [["Hombre", "Mujer"]],
+        },
+      },
+    },
+    LugaresAconocer: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate: {
+        isIn: {
+          args: [["La Isla del Faraón", "El Muelle" , "El Faro", "El Áspero"]],
+        },
+      },
 
     },
-    LugaresAconocer:{
-      type: DataTypes.STRING,
-      allowNull: true
 
+    opiniones: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
-
-    opiniones:{
-      type: DataTypes.STRING,
-      allowNull: true
-    }
-
-
-
-
   },
   { timestamps: true, freezeTableName: true }
 );
 
-
-module.exports = Users
+module.exports = Users;

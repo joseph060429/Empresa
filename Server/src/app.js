@@ -41,7 +41,9 @@ https
     console.log("Server on port", app.get("port"));
   });
 
+//Asi tienes que estar//
 sequelize.sync();
+
 //Para reiniciar las tablas//
 // sequelize.sync({force: true})
 

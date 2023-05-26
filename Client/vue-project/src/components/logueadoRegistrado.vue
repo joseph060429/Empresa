@@ -29,7 +29,7 @@
     <div>
       <v-container>
         <v-title>Escoge tu sexo: </v-title>
-        <v-radio-group v-model="data.genero">
+        <v-radio-group v-model="data.genero" :items="['Hombre', 'Mujer']">
           
           <v-radio label="Hombre" value="1" color="blue"></v-radio>
           <v-radio label="Mujer" value="2" color="blue"></v-radio>
