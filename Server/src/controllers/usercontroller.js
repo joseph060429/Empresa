@@ -1,6 +1,6 @@
 const Users = require("../models/user");
 const jwt = require("jsonwebtoken");
-require("dotenv").config;
+// require("dotenv").config;
 const bcrypt = require("bcrypt");
 const multer = require("../middleware/multerMiddleware");
 const validateToken = require("../middleware/validate-token");
@@ -70,33 +70,29 @@ const byDeleteUser = async (req, res) => {
   }
 };
 
-//Actualizar usuario
-const actualizarUsuario = async (req, res) => {
-  const { email, password } = req.body;
+//Actualizar usuario siendo usuario
+const updateUser = async (req, res) => {
+  const { id , genero} = req.body;
 
+  // console.log(req.user);
   try {
-    //Buscar Usuario por email y contraseña//
-    const user = await Users.findOne({
-      where: {
-        email: email,
-        password: password,
-      },
-    });
-    if (user) {
-      const actualiza = await Users.update({
-        where: { name: name, password: password },
-      });
-
-      console.log(actualiza);
-
-      if (actualiza === 1) {
-        return res.send("Usuario actualizado");
-      }
-    } else {
-      return res.status(401).send("El usuario y la contraseña no coinciden");
+    const user = await Users.findOne({ where: { id: id } });
+    if (!user) {
+      res.status(404).send("No se encontró el usuario");
     }
-  } catch (error) {
-    console.log(error);
+    const result = await Users.update(
+      { genero: genero },
+      { where: { id: id } }
+    );
+
+    if (result[0] === 1) {
+      res.send("Usuario actualizado");
+    } else {
+      res.send("No se pudo actualizar el usuario");
+      throw new Error();
+    }
+  } catch (err) {
+    console.log("No se pudo actualizar el usuario: ", err);
   }
 };
 
@@ -112,7 +108,6 @@ const getAll = async (req, res) => {
 };
 
 //Traer un solo usuario//
-
 const getUserById = async (req, res) => {
   try {
     const user = await Users.findOne({
@@ -130,16 +125,36 @@ const getUserById = async (req, res) => {
 module.exports = {
   deleteUser,
   byDeleteUser,
-  actualizarUsuario,
+  updateUser,
   getAll,
   getUserById,
 };
 
-// if (
-//   !req.headers.authorization ||
-//   !auth.verifyToken
-// ) {
-//   throw new AppError(NOT_LOGGED, 401, "not logged in");
-// }
+//Actualizar usuario siendo usuario
+// const updateUser = async (req, res) => {
+//   const { password, email } = req.body;
+//   const { genero } = req.body;
 
-// res.json(await User.findAll());
+//   // console.log(req.user);
+//   try {
+//     const user = await Users.findOne({ where: { email: email } });
+//     if (!user) {
+//       res.status(404).send("No se encontró el usuario");
+//     }
+//     //si existe el usuario desencripto la contraseña
+//     if (await bcrypt.compare(password, user.dataValues.password)) {
+//       const result = await Users.update({ genero: genero}, { where: { email: email } });
+//       if (result[0] === 1) {
+//         res.send("Usuario actualizado");
+//       } else {
+//         res.send("No se pudo actualizar el usuario");
+//         throw new Error();
+//       }
+//     } else {
+//       res.status(401).send("Correo o contraseña invalidas");
+//     }
+//   } catch (err) {
+//     console.log("No se pudo actualizar el usuario: ", err);
+//   }
+
+// };

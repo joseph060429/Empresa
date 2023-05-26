@@ -11,7 +11,8 @@ const {
   deleteUser,
   byDeleteUser,
   getAll,
-  getUserById
+  getUserById,
+  updateUser
 
   } = require("../controllers/usercontroller");
   
@@ -24,15 +25,19 @@ router.delete("/elimina", deleteUser);
 //Borrar usuario siendo usuario
 router.delete("/eliminaUsuario", byDeleteUser);
 
+//Actualizar usuario siendo usuario 
+// router.put("/actualizarUsuario/:id", updateUser);
+
+router.put("/actualizarUsuario", updateUser);
+
 //Subir archivos
 router.post("/upload", upload.single('archivo'), (req, res)=>{res.send(),"Bien"})
 
 //Traer a todos los usuario//
-router.get('/traerTodosUsuarios', validateToken, getAll);
+router.get('/traerTodosUsuarios', getAll);
 
 //Traer a un solo usuario
-
-router.get("/usuarios/:id", validateToken, getUserById);
+router.get("/usuarios/:id", getUserById);
 
   
 module.exports = router;
