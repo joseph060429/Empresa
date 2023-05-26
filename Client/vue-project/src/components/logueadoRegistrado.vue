@@ -38,23 +38,26 @@
     <div>
       <v-container>
         <v-title>¿Deseas subir un archivo? </v-title>
-          <v-file-input
+        <v-file-input
           @change="onFileChange"
           chips
           multiple
           label="Subir archivo"
           color="blue"
-          v-model="imagen"
+          v-model="archivo"
+          @click:clear="clear"
         ></v-file-input>
-        <v-btn @click="subirArchivo(); imagen = null" id="subirArchivo" prepend-icon="mdi-upload"
+        <v-btn
+          @click="
+            subirArchivo();
+            archivo = null;
+          "
+          id="subirArchivo"
+          prepend-icon="mdi-upload"
           >Subir archivo</v-btn
         >
       </v-container>
     </div>
-    <!-- <div> -->
-    <!-- <v-layout align-center justify-center>
-      <v-btn @click="GuardarCambios" id="guardarCambios"> Guardar Cambios </v-btn>
-    </v-layout> -->
 
     <v-row class="ma-4 justify-space-around">
       <v-flex text-xs-left>
@@ -67,49 +70,36 @@
         >
       </v-flex>
     </v-row>
-
-    <!-- <div class="d-flex flex-row-reverse mb-6 bg-surface-variant">
-    <v-sheet class="ma-2 pa-2">
-      I'm a single element in a flexbox container!
-    </v-sheet> -->
-
-    <!-- <div class="d-flex flex-row-reverse mb-6 bg-surface-variant">
-      <v-btn @click="GuardarCambios" id="guardarCambios"> Guardar Cambios </v-btn> -->
-
-    <!-- <div class="d-flex flex-row-reverse mb-6 bg-surface-variant">
-      <v-sheet class="ma-2 pa-2">Flex item 1</v-sheet> -->
-
-    <!-- </div> -->
   </v-form>
 </template>
 
 <script setup>
 import { authStores } from "@/stores";
-import { ref } from "vue"
+import { ref } from "vue";
 import { apiClient } from "@/middlewares";
 import { toast } from "vue3-toastify";
 const authStore = authStores();
 
 console.log(authStore);
 
+//Subir archivo
 var fileToUpload = null;
 function onFileChange(event) {
   console.log(event);
   fileToUpload = event.target.files[0];
-
-  
   console.log(fileToUpload);
 }
 
-const imagen = ref(null)
+const archivo = ref(null);
 
-
+const clear = () => {
+  archivo.value = null;
+};
 async function subirArchivo() {
-  console.log('Valor imagen: ', imagen.value);
-  if (imagen.value === null) {
+  console.log("Valor archivo: ", archivo.value);
+  if (archivo.value === null) {
     return toast("El campo subir archivo esta vacio");
   }
-  
 
   const formData = new FormData();
   formData.append("archivo", fileToUpload);
@@ -123,6 +113,7 @@ async function subirArchivo() {
     });
 }
 
+//Guardar cambios
 async function guardarCambios() {
   toast("Cambios guardados correctamente");
 }
