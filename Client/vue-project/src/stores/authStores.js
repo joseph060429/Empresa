@@ -1,85 +1,10 @@
-// import { defineStore } from "pinia";
-// import { router } from "../router";
-// import { evaluate } from "../helpers"
-// // import apiClient from ""
-// // import {apiClient} from "@/middleware"
-// // import { apiClient } from '@/middleware'
-// const useAuthStore = defineStore('user', {
-//   // id: 'auth',
-//   state: () => ({
-//     //inicializar el estado desde el almacenamiento local para permitir que el usuario permanezca conectado
-//       user: JSON.parse(localStorage.getItem('user')),
-//       returnUrl: null,
-//       email: null,
-//       username: null,
-//       isLogged: false,
-//   }),
-
-//     getters: {
-//     getUsername(state) {
-//       return state.username
-//     },
-//     getEmail(state) {
-//       return state.email;
-//     },
-//   },
-//   actions: {
-//       // async login(email, password) {
-//       //     // const user = await fetchWrapper.post(`${baseUrl}/login`, { email, password });
-//       //     const user = await fetchWrapper.post(`${baseUrl}/login`, { email, password });
-
-//       //     // actualizar el estado de pinia
-//       //     this.user = user;
-
-//       //     //almacenar los detalles del usuario y jwt en el almacenamiento local para mantener al usuario conectado entre actualizaciones
-//       //     //de página
-//       //     localStorage.setItem('user', JSON.stringify(user));
-
-//       //     //redirigir a la URL anterior o por defecto a la página de inicio
-//       //     router.push(this.returnUrl || '/');
-//       async login(body) {
-//         localStorage.removeItem('token')
-//         this.isLogged = false;
-//         // if(!body.)
-
-//       },
-//       logout() {
-//           this.user = null;
-//           this.isLogged = false;
-//           localStorage.removeItem('token');
-//           router.push('/');
-//       }
-//   }
-// });
-
-//  export default useAuthStore;
-
-// export const useLoginStore = defineStore("loginStores", {
-//     state: () => ({
-//         todos: null,
-//         uno: null,
-//         loadingData: false,
-//         todosActivos: false, // valua si se han cargado los pendientes o no, para no repetir llamadas a bbdd
-//         todosEsCliente: false, // valua si se han cargado en TODOS los datos de un CLIENTE o de TODOS los CLIENTES
-//         cancelarPeticion: new AbortController()
-//       }),
-//       getters: {
-
-//       },
-//       actions: {
-
-//       }
-
-// })
-
-// ----------------Desde aqui-------
-
 import { defineStore } from "pinia";
 import { router } from "@/router";
 import { apiClient, auth } from "@/middlewares";
 import { evaluate } from "@/helpers";
 import "vue3-toastify/dist/index.css";
 import { toast } from "vue3-toastify";
+import axios from "axios";
 
 const userStore = defineStore("user", {
   state: () => {
@@ -102,7 +27,7 @@ const userStore = defineStore("user", {
   },
   actions: {
     async getAll() {
-      return await apiClient.get("/getAll");
+      return await axios.get("/traerTodosUsuarios");
     },
     async get(id) {
       if (!id) {
@@ -119,7 +44,8 @@ const userStore = defineStore("user", {
       return await apiClient.delete(`deleteUser/${id}`);
     },
     async create(body) {
-      return await apiClient.post("createUser", body);
+      // return await apiClient.post("createUser", body);
+      return await axios.post("/registro", body);
     },
     async update(id, body) {
       if (!id) {
@@ -224,3 +150,88 @@ const userStore = defineStore("user", {
 });
 
 export default userStore;
+
+
+
+
+
+
+
+
+
+
+// import { defineStore } from "pinia";
+// import { router } from "../router";
+// import { evaluate } from "../helpers"
+// // import apiClient from ""
+// // import {apiClient} from "@/middleware"
+// // import { apiClient } from '@/middleware'
+// const useAuthStore = defineStore('user', {
+//   // id: 'auth',
+//   state: () => ({
+//     //inicializar el estado desde el almacenamiento local para permitir que el usuario permanezca conectado
+//       user: JSON.parse(localStorage.getItem('user')),
+//       returnUrl: null,
+//       email: null,
+//       username: null,
+//       isLogged: false,
+//   }),
+
+//     getters: {
+//     getUsername(state) {
+//       return state.username
+//     },
+//     getEmail(state) {
+//       return state.email;
+//     },
+//   },
+//   actions: {
+//       // async login(email, password) {
+//       //     // const user = await fetchWrapper.post(`${baseUrl}/login`, { email, password });
+//       //     const user = await fetchWrapper.post(`${baseUrl}/login`, { email, password });
+
+//       //     // actualizar el estado de pinia
+//       //     this.user = user;
+
+//       //     //almacenar los detalles del usuario y jwt en el almacenamiento local para mantener al usuario conectado entre actualizaciones
+//       //     //de página
+//       //     localStorage.setItem('user', JSON.stringify(user));
+
+//       //     //redirigir a la URL anterior o por defecto a la página de inicio
+//       //     router.push(this.returnUrl || '/');
+//       async login(body) {
+//         localStorage.removeItem('token')
+//         this.isLogged = false;
+//         // if(!body.)
+
+//       },
+//       logout() {
+//           this.user = null;
+//           this.isLogged = false;
+//           localStorage.removeItem('token');
+//           router.push('/');
+//       }
+//   }
+// });
+
+//  export default useAuthStore;
+
+// export const useLoginStore = defineStore("loginStores", {
+//     state: () => ({
+//         todos: null,
+//         uno: null,
+//         loadingData: false,
+//         todosActivos: false, // valua si se han cargado los pendientes o no, para no repetir llamadas a bbdd
+//         todosEsCliente: false, // valua si se han cargado en TODOS los datos de un CLIENTE o de TODOS los CLIENTES
+//         cancelarPeticion: new AbortController()
+//       }),
+//       getters: {
+
+//       },
+//       actions: {
+
+//       }
+
+// })
+
+// ----------------Desde aqui-------

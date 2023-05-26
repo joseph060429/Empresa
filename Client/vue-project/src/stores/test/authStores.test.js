@@ -2,6 +2,7 @@ import { setActivePinia, createPinia } from "pinia";
 import { authStores } from "@/stores";
 import { describe, it, expect, beforeEach, vi, test } from "vitest";
 import axios from "axios";
+import { useAuthStore } from "../../services/userServices";
 
 describe("Test", () => {
   beforeEach(() => {
@@ -15,46 +16,117 @@ describe("Test", () => {
 
 vi.mock("axios");
 
-describe("User service", () => {
-  describe("fetchUsers ", () => {
-    test("realiza una solicitud GET para obtener usuarios", async () => {
-      const userMock = [{ id: 1 }, { id: 2 }];
+//Login//
 
-      axios.get.mockResolvedValue({
-        data: userMock,
-      });
-    });
+describe("AuthStores", () => {
+  it("Muestra login correctamente", async () => {
+    const email = "juanito@gmail.com";
+    const password = "123456";
+
+    axios.post.mockResolvedValue({ token: "abcdefsjuhjdh" });
+
+    const user = await axios.post("/login", { email, password });
+    console.log(user);
+
+    expect(axios.post).toBeCalledWith("/login", { email, password });
+    expect(user).toHaveProperty("token");
   });
 });
 
+//Traer todos los usuarios test
+describe("TraerUsuarios", () => {
+  test("Realiza una solicitud GET para obtener usuarios", async () => {
+    const userMock = [{ id: 1 }, { id: 2 }];
+    axios.get.mockResolvedValue({
+      data: userMock,
+    });
 
+    const user = await useAuthStore().obtenerTodosUsuario();
+      console.log("nombreeee", user);
+    expect(axios.post).toHaveBeenCalledOnce(
+      "https://localhost:4000/traerTodosUsuarios"
+    );
 
+    
+  });
+});
 
+//TEST crear usuario
+// describe('createUser', () => {
+//   test('Hace una solicitud POST para crear un nuevo usuario', async () => {
+//     const newUserPayload = {
+//       name: 'Joseph Ricardo',
+//       surnames: 'Sepulveda Montes',
+//       email: "josephsm0406@gmail.com",
+//       password: "123456"
+//     }
+
+//     const newUserMock = {
+//       id: 1,
+//       ...newUserPayload,
+
+//     }
+
+//     axios.post.mockResolvedValue({
+//       data: newUserMock,
+//     })
+
+//     const nuevoUsuario = await useAuthStore().crearUsuario
+
+//     expect(axios.post).toHaveBeenCalledOnce('https://localhost:4000/registro', newUserPayload)
+//     expect(nuevoUsuario).toStrictEqual(newUserMock)
+
+//   })
+// })
+
+// describe('createUser', () => {
+//   test('makes a POST request to create a new user', async () => {
+//     const newUserPayload = {
+//       name: 'john doe',
+//     }
+
+//     const newUserMock = {
+//       id: 1,
+//       ...newUserPayload,
+//     }
+
+//     axios.post.mockResolvedValue({
+//       data: newUserMock,
+//     })
+
+//     const newUser = await crearUsuario(newUserPayload)
+//   })
+// })
+
+// describe('fetchUsers', () => {
+//   test('makes a GET request to fetch users', async () => {
+//     const usersMock = [{ id: 1 }, { id: 2 }]
+
+//     axios.get.mockResolvedValue({
+//       data: usersMock,
+//     })
+
+//     const users = await crearUsuario()q
+
+//     expect(axios.get).toHaveBeenCalledWith('')
+
+//   })
+// })
 
 // describe('fetchUsers', () => {
 //     test('realiza una solicitud GET para obtener usuarios', async () => {
 //       const usersMock = [{ id: 1 }, { id: 2 }]
-  
+
 //       axios.get.mockResolvedValue({
 //         data: usersMock,
 //       })
-  
+
 //       const users = await fetchUsers()
-  
+
 //       expect(axios.get).toHaveBeenCalledWith('https://localhost:4000/')
-  
+
 //     })
 //   })
-
-
-
-
-
-
-
-
-
-
 
 // Nadaaaa
 

@@ -44,8 +44,9 @@
           multiple
           label="Subir archivo"
           color="blue"
+          v-model="imagen"
         ></v-file-input>
-        <v-btn @click="subirArchivo" id="subirArchivo" prepend-icon="mdi-upload"
+        <v-btn @click="subirArchivo(); imagen = null" id="subirArchivo" prepend-icon="mdi-upload"
           >Subir archivo</v-btn
         >
       </v-container>
@@ -84,6 +85,7 @@
 
 <script setup>
 import { authStores } from "@/stores";
+import { ref } from "vue"
 import { apiClient } from "@/middlewares";
 import { toast } from "vue3-toastify";
 const authStore = authStores();
@@ -94,17 +96,25 @@ var fileToUpload = null;
 function onFileChange(event) {
   console.log(event);
   fileToUpload = event.target.files[0];
+
+  
   console.log(fileToUpload);
 }
 
+const imagen = ref(null)
+
+
 async function subirArchivo() {
-  if (fileToUpload === null) {
+  console.log('Valor imagen: ', imagen.value);
+  if (imagen.value === null) {
     return toast("El campo subir archivo esta vacio");
   }
+  
+
   const formData = new FormData();
   formData.append("archivo", fileToUpload);
   apiClient
-    .post("/api/upload", formData)
+    .post("/upload", formData)
     .then((res) => {
       toast("Arhivo subido correctamente");
     })
