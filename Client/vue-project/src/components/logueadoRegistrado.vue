@@ -18,9 +18,9 @@
     <div>
       <v-container>
         <v-title>Sitios que deseas visitar: </v-title>
-        <v-select v-model="data.LugaresAconocer"
+        <v-select v-model="data.lugaresAconocer"
           label="Escoge un lugar turístico"
-          :items="['La Isla del Faraón', 'El Muelle', 'El Faro', 'El Áspero']"
+          :items="['La Isla del Faraon', 'El Muelle', 'El Faro', 'El Aspero']"
           color="blue"
          
         ></v-select>
@@ -90,7 +90,7 @@ const authStore = authStores();
 
 const data = reactive({
     genero: "",
-    LugaresAconocer: "",
+    lugaresAconocer: "",
     opiniones: ""
 
 })

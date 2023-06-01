@@ -72,18 +72,20 @@ const byDeleteUser = async (req, res) => {
 
 //Actualizar usuario siendo usuario
 const updateUser = async (req, res) => {
-  const { id , genero, opiniones} = req.body;
+  const { user_id , genero, opiniones, lugaresAconocer, nombre_archivo} = req.body;
 
   // console.log(req.user);
   try {
-    const user = await Users.findOne({ where: { id: id } });
+    const user = await Users.findOne({ where: { user_id: user_id } });
     if (!user) {
       res.status(404).send("No se encontró el usuario");
     }
     const result = await Users.update(
       { genero: genero,
-        opiniones: opiniones},
-      { where: { id: id } }
+        opiniones: opiniones,
+        lugaresAconocer: lugaresAconocer,
+        nombre_archivo: nombre_archivo},
+      { where: { user_id: user_id } }
     );
 
     if (result[0] === 1) {
@@ -113,7 +115,7 @@ const getUserById = async (req, res) => {
   try {
     const user = await Users.findOne({
       where: {
-        id: req.params.id,
+        user_id: req.params.user_id,
       },
     });
 

@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const verificarToken = require("./middleware/validate-token");
 const routesProtegidasUser = require("./routes/routes");
 const routesNoProtegidasUser = require("./routes/routes.no.protegidas");
+// const { Users, archivosUser } = require ("./models/index")
 const cors = require("cors");
 const https = require("https");
 const fs = require("fs");
@@ -42,9 +43,9 @@ https
   });
 
 //Asi tienes que estar//
-sequelize.sync();
+// sequelize.sync();
 
 //Para reiniciar las tablas//
-// sequelize.sync({force: true})
+sequelize.sync({force: true})
 
 module.exports = app;
