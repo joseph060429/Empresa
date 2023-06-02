@@ -74,9 +74,10 @@ const byDeleteUser = async (req, res) => {
 const updateUser = async (req, res) => {
   const { user_id , genero, opiniones, lugaresAconocer, nombre_archivo} = req.body;
 
-  // console.log(req.user);
+ 
   try {
     const user = await Users.findOne({ where: { user_id: user_id } });
+    
     if (!user) {
       res.status(404).send("No se encontró el usuario");
     }

@@ -1,5 +1,4 @@
 const path = require("path");
-const multer = require("multer");
 
 const { Users } = require("../models/index.js");
 
@@ -30,7 +29,7 @@ const createNewUser = async (req, res) => {
     const usuarioExiste = await Users.findOne({ where: { email: email } });
 
     if (usuarioExiste) {
-      res.status(400).send("El usuario ya existe por favor logueate");
+      return res.status(400).send("El usuario ya existe por favor logueate");
     }
 
     //Encriptar la contraseña

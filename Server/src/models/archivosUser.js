@@ -15,6 +15,8 @@ const archivosUsers = sequelize.define(
       allowNull: true,
     },
 
+   
+
     user_id: {
       type: Sequelize.UUID,
       //type: DataTypes.INTEGER,

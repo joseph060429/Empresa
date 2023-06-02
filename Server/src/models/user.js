@@ -12,7 +12,7 @@ const Users = sequelize.define(
       //type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
-      isUnique: true,
+      unique: true,
       defaultValue: Sequelize.UUIDV4, //Esto da un valor por defecto
       //autoIncrement: true,
     },
@@ -33,7 +33,9 @@ const Users = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
       primaryKey: true,
-      isUnique: true,
+      unique: {
+        msg: "No puedes registrar este email"
+      },
       validate: {
         isEmail: true,
       },
@@ -66,7 +68,16 @@ const Users = sequelize.define(
       },
     }
   },
-  { timestamps: true, freezeTableName: true }
+  { 
+    timestamps: true, 
+    freezeTableName: true,
+    // indexes: [
+    //   {
+    //     unique: true,
+    //     fields: ['user_id','email']
+    //   }
+    // ]
+   }
 );
 
 // console.log("User => ", Users.getAttributes().lugaresAconocer);
