@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "node",
+    "password": "123456",
+    "database": "crudnodejs",
+    "host": "localhost",
+    "dialect": "mssql"
+  },
+  "test": {
+    "username": "node",
+    "password": "123456",
+    "database": "crudnodejs",
+    "host": "localhost",
+    "dialect": "mssql"
+  },
+  "production": {
+    "username": "node",
+    "password": "123456",
+    "database": "crudnodejs",
+    "host": "localhost",
+    "dialect": "mssql"
+  }
+}

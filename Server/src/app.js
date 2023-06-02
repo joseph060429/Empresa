@@ -43,9 +43,9 @@ https
   });
 
 //Asi tienes que estar//
-// sequelize.sync();
+sequelize.sync();
 
 //Para reiniciar las tablas//
-sequelize.sync({force: true})
+// sequelize.sync({force: true})
 
 module.exports = app;

@@ -2,6 +2,8 @@
 const sequelize = require("../databases/connection").sequelize;
 const { Sequelize, DataTypes } = require("sequelize");
 
+
+
 const Users = sequelize.define(
   "Users",
   {
@@ -66,5 +68,10 @@ const Users = sequelize.define(
   },
   { timestamps: true, freezeTableName: true }
 );
+
+// console.log("User => ", Users.getAttributes().lugaresAconocer);
+
+//ORM IMPORTANTE//
+
 
 module.exports = Users;
